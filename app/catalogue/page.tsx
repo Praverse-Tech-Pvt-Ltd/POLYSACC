@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import NicheStorylineSection from '@/components/NicheStorylineSection'
 
 const BASKETS = [
   {
@@ -284,6 +285,7 @@ function BasketCard({ basket, index }: { basket: typeof BASKETS[number]; index: 
 export default function CataloguePage() {
   return (
     <>
+      <NicheStorylineSection />
       <style>{`
         @keyframes bgShift {
           0%   { background-position: 0% 50%; }

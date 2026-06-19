@@ -3,26 +3,31 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 
 type NavLink = {
   label: string
   href: string
-  highlight: boolean
   small: boolean
   external?: boolean
 }
 
 const NAV_LINKS: NavLink[] = [
-  { label: 'About',      href: '/about',      highlight: false, small: false },
-  { label: 'Science',    href: '/science',    highlight: false, small: false },
-  { label: 'Portfolio',  href: '/portfolio',  highlight: false, small: false },
-  { label: 'Catalogue',  href: '/catalogue',  highlight: true,  small: false },
-  { label: 'Contact',    href: '/contact',    highlight: false, small: false },
+  { label: 'About',      href: '/about',      small: false },
+  { label: 'Science',    href: '/science',    small: false },
+  { label: 'Portfolio',  href: '/portfolio',  small: false },
+  { label: 'Catalogue',  href: '/catalogue',  small: false },
+  { label: 'Contact',    href: '/contact',    small: false },
 ]
+
+function isActivePath(pathname: string, href: string) {
+  return pathname === href || pathname.startsWith(href + '/')
+}
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20)
@@ -82,50 +87,43 @@ export default function Nav() {
           className="hidden lg:flex"
           style={{ alignItems: 'center', gap: '2.5rem' }}
         >
-          {NAV_LINKS.map((link) =>
-            link.highlight ? (
-              <Link
-                key={link.label}
-                href={link.href}
-                {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                style={{
-                  fontFamily: 'var(--font-cormorant)',
-                  fontSize: link.small ? '0.88rem' : '1.05rem',
-                  fontWeight: 500,
-                  fontStyle: 'italic',
-                  color: 'var(--sage-deep)',
-                  textDecoration: 'none',
-                  letterSpacing: '0.02em',
-                  borderBottom: '0.5px solid var(--sage)',
-                  paddingBottom: '1px',
-                  transition: 'opacity 0.2s',
-                  whiteSpace: 'nowrap',
-                }}
-                onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = '0.65')}
-                onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = '1')}
-              >
-                {link.label}
-              </Link>
-            ) : (
+          {NAV_LINKS.map((link) => {
+            const active = isActivePath(pathname, link.href)
+            return (
               <Link
                 key={link.label}
                 href={link.href}
                 style={{
+                  position: 'relative',
                   fontFamily: 'var(--font-dm-sans)',
                   fontSize: '0.85rem',
-                  fontWeight: 400,
-                  color: 'var(--muted)',
+                  fontWeight: active ? 600 : 400,
+                  color: active ? 'var(--sage-deep)' : 'var(--muted)',
                   textDecoration: 'none',
                   transition: 'color 0.3s',
                   letterSpacing: '0.03em',
+                  paddingBottom: '6px',
                 }}
-                onMouseEnter={(e) => ((e.target as HTMLElement).style.color = 'var(--charcoal)')}
-                onMouseLeave={(e) => ((e.target as HTMLElement).style.color = 'var(--muted)')}
+                onMouseEnter={(e) => { if (!active) (e.currentTarget as HTMLElement).style.color = 'var(--charcoal)' }}
+                onMouseLeave={(e) => { if (!active) (e.currentTarget as HTMLElement).style.color = 'var(--muted)' }}
               >
                 {link.label}
+                <span
+                  style={{
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    height: '1.5px',
+                    background: 'var(--sage-deep)',
+                    transform: active ? 'scaleX(1)' : 'scaleX(0)',
+                    transformOrigin: 'left',
+                    transition: 'transform 0.25s ease',
+                  }}
+                />
               </Link>
             )
-          )}
+          })}
         </div>
 
         {/* Desktop CTA buttons */}
@@ -215,32 +213,35 @@ export default function Nav() {
           >
             ✕
           </button>
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="mobile-nav-link"
-              style={{
-                fontFamily: 'var(--font-cormorant)',
-                fontSize: 'clamp(2rem, 9vw, 2.5rem)',
-                fontWeight: 300,
-                fontStyle: 'italic',
-                color: 'var(--charcoal)',
-                textDecoration: 'none',
-                borderBottom: '1px solid transparent',
-                transition: 'border-color 0.2s',
-              }}
-              onMouseEnter={(e) =>
-                ((e.target as HTMLElement).style.borderBottomColor = 'var(--sage)')
-              }
-              onMouseLeave={(e) =>
-                ((e.target as HTMLElement).style.borderBottomColor = 'transparent')
-              }
-            >
-              {link.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const active = isActivePath(pathname, link.href)
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="mobile-nav-link"
+                style={{
+                  fontFamily: 'var(--font-cormorant)',
+                  fontSize: 'clamp(2rem, 9vw, 2.5rem)',
+                  fontWeight: 300,
+                  fontStyle: 'italic',
+                  color: active ? 'var(--sage-deep)' : 'var(--charcoal)',
+                  textDecoration: 'none',
+                  borderBottom: active ? '1px solid var(--sage)' : '1px solid transparent',
+                  transition: 'border-color 0.2s, color 0.2s',
+                }}
+                onMouseEnter={(e) =>
+                  ((e.target as HTMLElement).style.borderBottomColor = 'var(--sage)')
+                }
+                onMouseLeave={(e) =>
+                  ((e.target as HTMLElement).style.borderBottomColor = active ? 'var(--sage)' : 'transparent')
+                }
+              >
+                {link.label}
+              </Link>
+            )
+          })}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', alignItems: 'center' }}>
             <a
               href="https://elmiron.in"

@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import MolecularPattern from '@/components/MolecularPattern'
 import Link from 'next/link'
-import NicheStorylineSection from '@/components/NicheStorylineSection'
-import ProductGrid from '@/components/ProductGrid'
 
 export const metadata: Metadata = {
   title: 'Portfolio',
@@ -372,9 +370,6 @@ export default function PortfolioPage() {
           </div>
         </div>
       </section>
-
-      <NicheStorylineSection />
-      <ProductGrid />
 
       {/* Pipeline teaser */}
       <section
