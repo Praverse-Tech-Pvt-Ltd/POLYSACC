@@ -1,15 +1,15 @@
 const PPS_STATS = [
   { value: '3–8%',    label: 'Women globally affected by IC/BPS' },
   { value: '5–7 yr',  label: 'Average delay to IC/BPS diagnosis' },
-  { value: '1 only',  label: 'Oral PPS formulation manufactured in India — by Polysacc' },
+  { value: 'India',  label: 'Oral PPS formulation — manufactured domestically by Polysacc' },
 ]
 
 const PPS_INDICATIONS = [
-  { area: 'Bladder Pain',             detail: 'Interstitial Cystitis / Bladder Pain Syndrome (IC/BPS) — first-line oral therapy' },
-  { area: 'Urinary Urgency',          detail: 'Reduction of urinary urgency and frequency in chronic bladder inflammation' },
-  { area: 'GAG Layer Replenishment',  detail: 'Repairs the glycosaminoglycan (GAG) protective lining of the urothelium' },
-  { area: 'Antithrombotic / Lipid',   detail: 'Heparin-like activity; mild anticoagulant and lipid-lowering properties' },
-  { area: 'Specialty Positioning',    detail: 'Niche polysaccharide API with limited global manufacturers and high barrier to entry' },
+  { area: 'Bladder Pain — IC/BPS',        detail: 'Interstitial Cystitis / Bladder Pain Syndrome — first-line oral therapy; replenishes the GAG protective layer of the urothelium' },
+  { area: 'Osteoarthritis (OA)',           detail: 'PPS modulates cartilage metabolism and inhibits enzymes implicated in articular cartilage degradation, with evidence for pain and functional improvement' },
+  { area: 'Hyperlipidaemia (HL)',          detail: 'Heparin-like sulphation confers lipid-lowering activity; inhibits lipoprotein lipase and reduces LDL uptake in vascular endothelium' },
+  { area: 'Diabetic Nephropathy (DN)',     detail: 'Restores glomerular basement membrane heparan sulphate proteoglycans; reduces proteinuria and slows nephropathy progression in preclinical and early clinical evidence' },
+  { area: 'Urinary Urgency & Frequency',  detail: 'Reduction of urinary urgency and frequency in chronic bladder inflammation secondary to urothelial barrier dysfunction' },
 ]
 
 export default function PolysaccharidePentosanSection() {
@@ -18,9 +18,9 @@ export default function PolysaccharidePentosanSection() {
       {/* Basket narrative */}
       <section
         style={{
-          background: 'var(--charcoal)',
+          background: 'var(--hero-grey)',
           padding: '6rem 6rem',
-          borderBottom: '0.5px solid rgba(100,160,155,0.18)',
+          borderBottom: '0.5px solid rgba(138,171,138,0.22)',
         }}
         className="section-pad"
       >
@@ -30,7 +30,7 @@ export default function PolysaccharidePentosanSection() {
             className="responsive-split"
           >
             <div>
-              <p className="section-tag" style={{ color: 'rgba(100,210,200,0.7)', marginBottom: '1.5rem' }}>
+              <p className="section-tag" style={{ marginBottom: '1.5rem' }}>
                 Basket 01 — Polysaccharide & Pentosan
               </p>
               <blockquote
@@ -39,20 +39,20 @@ export default function PolysaccharidePentosanSection() {
                   fontSize: 'clamp(1.5rem, 2.5vw, 2.2rem)',
                   fontWeight: 300,
                   fontStyle: 'italic',
-                  color: 'var(--cream)',
+                  color: 'var(--charcoal)',
                   lineHeight: 1.3,
                   margin: '0 0 2.5rem',
-                  borderLeft: '3px solid rgba(100,210,200,0.5)',
+                  borderLeft: '3px solid var(--sage)',
                   paddingLeft: '1.5rem',
                 }}
               >
-                "The only Indian manufacturer of oral Pentosan Polysulfate Sodium."
+                "Specialty polysaccharide chemistry, built for the niche that needs it most."
               </blockquote>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 {PPS_STATS.map((s) => (
-                  <div key={s.value} style={{ borderTop: '0.5px solid rgba(100,210,200,0.2)', paddingTop: '1rem' }}>
-                    <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.9rem', fontWeight: 300, color: 'rgba(100,210,200,0.85)', margin: '0 0 0.2rem', lineHeight: 1 }}>{s.value}</p>
-                    <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '0.72rem', fontWeight: 300, color: 'rgba(248,246,241,0.5)', margin: 0, lineHeight: 1.5 }}>{s.label}</p>
+                  <div key={s.value} style={{ borderTop: '0.5px solid rgba(138,171,138,0.25)', paddingTop: '1rem' }}>
+                    <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.9rem', fontWeight: 300, color: 'var(--sage-deep)', margin: '0 0 0.2rem', lineHeight: 1 }}>{s.value}</p>
+                    <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '0.72rem', fontWeight: 300, color: 'var(--muted)', margin: 0, lineHeight: 1.5 }}>{s.label}</p>
                   </div>
                 ))}
               </div>
@@ -64,7 +64,7 @@ export default function PolysaccharidePentosanSection() {
                   fontFamily: 'var(--font-dm-sans)',
                   fontSize: '0.9rem',
                   fontWeight: 300,
-                  color: 'rgba(248,246,241,0.7)',
+                  color: 'var(--muted)',
                   lineHeight: 1.9,
                   marginBottom: '1.5rem',
                   borderTop: 'none',
@@ -77,10 +77,10 @@ export default function PolysaccharidePentosanSection() {
                   fontFamily: 'var(--font-dm-sans)',
                   fontSize: '0.9rem',
                   fontWeight: 300,
-                  color: 'rgba(248,246,241,0.7)',
+                  color: 'var(--muted)',
                   lineHeight: 1.9,
                   marginBottom: '1.5rem',
-                  borderTop: '0.5px solid rgba(100,210,200,0.12)',
+                  borderTop: '0.5px solid rgba(138,171,138,0.2)',
                   paddingTop: '1.5rem',
                 }}
               >
@@ -91,13 +91,13 @@ export default function PolysaccharidePentosanSection() {
                   fontFamily: 'var(--font-dm-sans)',
                   fontSize: '0.9rem',
                   fontWeight: 300,
-                  color: 'rgba(248,246,241,0.7)',
+                  color: 'var(--muted)',
                   lineHeight: 1.9,
-                  borderTop: '0.5px solid rgba(100,210,200,0.12)',
+                  borderTop: '0.5px solid rgba(138,171,138,0.2)',
                   paddingTop: '1.5rem',
                 }}
               >
-                Polysacc is India's only manufacturer of oral PPS — removing the supply chain, cost, and regulatory barriers that previously made this therapy inaccessible to Indian and emerging-market patients. The specialty polysaccharide chemistry required to produce pharmaceutical-grade PPS is a genuine manufacturing moat.
+                Polysacc manufactures oral PPS in India — removing the supply chain, cost, and regulatory barriers that previously made this therapy inaccessible to Indian and emerging-market patients. The specialty polysaccharide chemistry required to produce pharmaceutical-grade PPS represents a genuine technical capability and commercial moat.
               </p>
             </div>
           </div>
@@ -119,16 +119,17 @@ export default function PolysaccharidePentosanSection() {
               <p className="section-tag" style={{ marginBottom: '1.25rem' }}>Basket Product</p>
               <div
                 style={{
-                  background: 'var(--charcoal)',
+                  background: 'var(--sage-pale)',
                   padding: '2rem',
-                  borderLeft: '3px solid rgba(100,210,200,0.6)',
+                  border: '0.5px solid rgba(138,171,138,0.35)',
+                  borderLeft: '3px solid var(--sage)',
                 }}
               >
-                <p style={{ fontFamily: 'var(--font-jetbrains)', fontSize: '0.6rem', color: 'rgba(100,210,200,0.6)', letterSpacing: '0.1em', margin: '0 0 0.75rem' }}>API</p>
-                <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.5rem', fontWeight: 300, color: 'var(--cream)', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
+                <p style={{ fontFamily: 'var(--font-jetbrains)', fontSize: '0.6rem', color: 'var(--sage-deep)', letterSpacing: '0.1em', margin: '0 0 0.75rem' }}>API</p>
+                <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.5rem', fontWeight: 300, color: 'var(--charcoal)', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
                   Pentosan Polysulfate Sodium
                 </p>
-                <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '0.75rem', fontWeight: 300, color: 'rgba(248,246,241,0.45)', margin: 0, lineHeight: 1.6 }}>
+                <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '0.75rem', fontWeight: 300, color: 'var(--muted)', margin: 0, lineHeight: 1.6 }}>
                   Semi-synthetic sulphated xylan · FDA-approved · Schedule H
                 </p>
               </div>
