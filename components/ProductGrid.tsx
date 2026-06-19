@@ -7,7 +7,6 @@ import { motion, useInView } from 'framer-motion'
 const CATEGORIES = [
   { id: 'polysaccharide-pentosan', num: '01', label: 'Polysaccharide & Pentosan', tag: 'Bladder Health',    color: '100, 160, 155' },
   { id: 'iron-complex',            num: '02', label: 'Iron Complex',              tag: 'Haematology',       color: '138, 171, 138' },
-  { id: 'vitamin-b12',             num: '03', label: 'Vitamin B12',               tag: 'Metabolic',         color: '160, 195, 160' },
   { id: 'mcb',                     num: '04', label: 'MCB · Neuropathy',          tag: 'Neurology',         color: '74, 122, 74'   },
   { id: 'steroids',                num: '05', label: 'Steroids',                  tag: 'Corticosteroids',   color: '110, 155, 110' },
   { id: 'anabolic-steroids',       num: '06', label: 'Anabolic Steroids',         tag: 'Endocrinology',     color: '90, 140, 90'   },
@@ -238,7 +237,7 @@ export default function ProductGrid() {
                 lineHeight: 1.15,
               }}
             >
-              Ten areas.{' '}
+              Nine areas.{' '}
               <span style={{ fontStyle: 'italic', color: 'var(--sage)' }}>One discipline.</span>
             </h2>
           </div>

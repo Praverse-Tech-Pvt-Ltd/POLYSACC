@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Polysacc Biochip Platform — Approval Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --charcoal: #1e231e;
+    --cream:    #f8f6f1;
+    --sage:     #8aab8a;
+    --sage-deep:#4a7a4a;
+    --muted:    #6b7a6b;
+    --amber:    #b07d3a;
+    --line:     rgba(138,171,138,0.22);
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #fff;
+    color: var(--charcoal);
+    font-size: 9pt;
+    line-height: 1.6;
+  }
+
+  /* PAGE LAYOUT */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 14mm 16mm 12mm;
+    background: #fff;
+    position: relative;
+    page-break-after: always;
+    overflow: hidden;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* PAGE 1 HEADER */
+  .p1-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    padding-bottom: 10px;
+    border-bottom: 0.5px solid var(--line);
+    margin-bottom: 18px;
+  }
+  .brand-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6.5pt;
+    letter-spacing: 0.18em;
+    color: var(--sage-deep);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .doc-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22pt;
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1.1;
+  }
+  .doc-title em {
+    font-style: italic;
+    color: var(--sage-deep);
+  }
+  .doc-meta {
+    text-align: right;
+    font-size: 6.5pt;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1.7;
+    letter-spacing: 0.06em;
+  }
+
+  /* SECTION TAG */
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 6px;
+  }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 14px 18px;
+    margin: 14px 0;
+    border-left: 3px solid var(--sage);
+  }
+  .pull-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13pt;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.45;
+    color: var(--cream);
+  }
+  .pull-quote cite {
+    display: block;
+    margin-top: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 6.5pt;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(248,246,241,0.4);
+    font-style: normal;
+  }
+
+  /* BODY TEXT */
+  .body-text {
+    font-size: 8.5pt;
+    font-weight: 300;
+    color: #3a443a;
+    line-height: 1.75;
+    margin-bottom: 10px;
+  }
+  .body-text strong { font-weight: 500; color: var(--charcoal); }
+
+  /* TWO COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 14px 0;
+  }
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin: 14px 0;
+  }
+
+  /* STAT STRIP */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 0.5px solid var(--line);
+    margin: 14px 0;
+  }
+  .stat-cell {
+    padding: 10px 12px;
+    border-right: 0.5px solid var(--line);
+    text-align: center;
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18pt;
+    font-weight: 300;
+    color: var(--sage-deep);
+    line-height: 1;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .stat-label {
+    font-size: 6pt;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* INDICATION CARD */
+  .indication-card {
+    border: 0.5px solid var(--line);
+    padding: 12px 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .indication-card .ic-num {
+    position: absolute;
+    right: 8px;
+    bottom: -8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42pt;
+    font-weight: 300;
+    color: rgba(138,171,138,0.08);
+    line-height: 1;
+    user-select: none;
+  }
+  .indication-card .ic-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 5.5pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 4px;
+    display: block;
+  }
+  .indication-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13pt;
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1.2;
+    margin-bottom: 5px;
+  }
+  .indication-card h3 em { font-style: italic; color: var(--sage-deep); }
+  .indication-card p {
+    font-size: 7.5pt;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.65;
+    position: relative;
+    z-index: 1;
+  }
+  .indication-card .biomarker-row {
+    margin-top: 7px;
+    padding-top: 6px;
+    border-top: 0.5px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .biomarker-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 5.5pt;
+    color: var(--sage-deep);
+    background: rgba(138,171,138,0.08);
+    border: 0.5px solid rgba(138,171,138,0.3);
+    padding: 2px 6px;
+    letter-spacing: 0.06em;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 0.5px;
+    background: var(--line);
+    margin: 14px 0;
+  }
+
+  /* PAGE 2 */
+  .p2-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid var(--line);
+    margin-bottom: 16px;
+  }
+  .p2-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16pt;
+    font-weight: 300;
+    color: var(--charcoal);
+  }
+  .p2-heading em { font-style: italic; color: var(--sage-deep); }
+
+  /* PLATFORM DIAGRAM */
+  .platform-diagram {
+    border: 0.5px solid var(--line);
+    padding: 14px;
+    margin: 12px 0;
+    background: #fafaf8;
+  }
+  .platform-center {
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-bottom: 0.5px solid var(--line);
+  }
+  .platform-center .pc-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 5.5pt;
+    letter-spacing: 0.14em;
+    color: var(--sage);
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .platform-center .pc-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14pt;
+    font-weight: 300;
+    color: var(--charcoal);
+    font-style: italic;
+  }
+  .platform-spokes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .spoke {
+    text-align: center;
+    padding: 8px 6px;
+    border: 0.5px solid var(--line);
+    background: #fff;
+  }
+  .spoke-abbr {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14pt;
+    font-weight: 300;
+    color: var(--sage-deep);
+    display: block;
+    margin-bottom: 3px;
+  }
+  .spoke-full {
+    font-size: 6pt;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  .spoke-marker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 5pt;
+    color: var(--sage);
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin: 12px 0;
+    border: 0.5px solid var(--line);
+  }
+  .tl-step {
+    padding: 10px 10px 10px;
+    border-right: 0.5px solid var(--line);
+    position: relative;
+  }
+  .tl-step:last-child { border-right: none; }
+  .tl-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 5.5pt;
+    color: var(--sage);
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+    display: block;
+  }
+  .tl-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10pt;
+    font-weight: 300;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+  .tl-desc {
+    font-size: 6.5pt;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  /* APPROVAL BOX */
+  .approval-box {
+    border: 0.5px solid var(--sage);
+    padding: 12px 14px;
+    margin-top: 14px;
+    background: rgba(138,171,138,0.04);
+  }
+  .approval-box h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11pt;
+    font-weight: 300;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+  }
+  .approval-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 16px;
+  }
+  .approval-list li {
+    font-size: 7.5pt;
+    font-weight: 300;
+    color: var(--muted);
+    padding-left: 10px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .approval-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 4px;
+    height: 4px;
+    background: var(--sage);
+    border-radius: 50%;
+  }
+
+  /* FOOTER */
+  .page-footer {
+    position: absolute;
+    bottom: 10mm;
+    left: 16mm;
+    right: 16mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 0.5px solid var(--line);
+    padding-top: 5px;
+  }
+  .page-footer span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 5.5pt;
+    color: rgba(107,122,107,0.5);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* PRINT */
+  @media print {
+    body { background: #fff; }
+    .page { width: 210mm; padding: 14mm 16mm 18mm; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ PAGE 1 -->
+<div class="page">
+
+  <div class="p1-header">
+    <div>
+      <div class="brand-label">Polysaccharide Chemistry Pvt Ltd · Confidential</div>
+      <h1 class="doc-title">The Polysacc<br /><em>Biochip Platform</em></h1>
+    </div>
+    <div class="doc-meta">
+      APPROVAL BRIEF<br />
+      JUNE 2026<br />
+      VERSION 1.0<br />
+      2 PAGES
+    </div>
+  </div>
+
+  <!-- THE INSIGHT -->
+  <div class="section-tag">The Core Insight</div>
+  <p class="body-text">
+    Four conditions — <strong>IC/BPS, Diabetic Nephropathy, Osteoarthritis, and Hyperlipidaemia</strong> — are clinically distinct in their presentation, yet share a single molecular thread: the progressive disruption of <strong>polysaccharide-based protective surfaces</strong>. In the bladder, it is the glycosaminoglycan (GAG) layer. In the kidney glomerulus, heparan sulphate proteoglycans. In articular cartilage, chondroitin and keratan sulphate. On the vascular endothelium, heparan sulphate chains that govern lipoprotein clearance.
+  </p>
+  <p class="body-text">
+    Polysaccharide Chemistry Pvt Ltd has built its pharmaceutical portfolio on this same molecular family. The biochip initiative is a natural extension of that expertise — a <strong>point-of-care biosensor platform</strong> capable of detecting polysaccharide-layer biomarkers across multiple chronic disease states, enabling early flare detection, treatment response monitoring, and companion diagnostics for Polysacc's therapeutic portfolio.
+  </p>
+
+  <div class="pull-quote">
+    <p>"The bladder, the kidney, the joint, the vessel wall — four organs, four diseases, one molecular failure: the polysaccharide layer breaks down. We already make the medicine. Now we build the sensor."</p>
+    <cite>Polysacc Biochip Platform — Concept Rationale</cite>
+  </div>
+
+  <!-- STATS -->
+  <div class="stat-strip">
+    <div class="stat-cell">
+      <span class="stat-value">5–7 yr</span>
+      <div class="stat-label">Average IC/BPS diagnosis delay globally</div>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">537M</span>
+      <div class="stat-label">Adults living with diabetes; 40% develop DN</div>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">528M</span>
+      <div class="stat-label">Osteoarthritis patients worldwide (2019, GBD)</div>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-value">39%</span>
+      <div class="stat-label">Global adults with raised total cholesterol</div>
+    </div>
+  </div>
+
+  <!-- 4 INDICATIONS — 2x2 GRID -->
+  <div class="section-tag" style="margin-top:14px;">The Four Indication Framework</div>
+  <div class="two-col">
+
+    <div class="indication-card">
+      <span class="ic-num">01</span>
+      <span class="ic-tag">IC / BPS · Bladder</span>
+      <h3>Interstitial Cystitis /<br /><em>Bladder Pain Syndrome</em></h3>
+      <p>The GAG layer lining the bladder urothelium is degraded — allowing urinary solutes to penetrate the epithelium and trigger chronic neurogenic pain, urgency, and frequency. IC/BPS remains a diagnosis of exclusion, with a median 5–7 year journey from symptom onset to correct diagnosis. A biochip measuring urinary GAG fragments, APF (antiproliferative factor), and urothelial permeability markers would close this diagnostic gap — and identify patients most likely to benefit from Pentosan Polysulfate Sodium therapy.</p>
+      <div class="biomarker-row">
+        <span class="biomarker-pill">Urinary GAG</span>
+        <span class="biomarker-pill">APF</span>
+        <span class="biomarker-pill">HB-EGF</span>
+        <span class="biomarker-pill">GP51</span>
+      </div>
+    </div>
+
+    <div class="indication-card">
+      <span class="ic-num">02</span>
+      <span class="ic-tag">DN · Kidney</span>
+      <h3>Diabetic<br /><em>Nephropathy</em></h3>
+      <p>The glomerular basement membrane is protected by heparan sulphate proteoglycans — the same molecular class as bladder GAG. In diabetic nephropathy, hyperglycaemia degrades these chains, increasing glomerular permeability and driving proteinuria. Early detection of heparan sulphate fragments in urine predicts DN progression before clinical proteinuria appears. The biochip creates a window for intervention — and a companion test for heparin-analogue nephroprotective therapies, including PPS's anti-inflammatory properties.</p>
+      <div class="biomarker-row">
+        <span class="biomarker-pill">Heparan Sulphate fragments</span>
+        <span class="biomarker-pill">uACR</span>
+        <span class="biomarker-pill">TGF-β1</span>
+      </div>
+    </div>
+
+    <div class="indication-card">
+      <span class="ic-num">03</span>
+      <span class="ic-tag">OA · Cartilage</span>
+      <h3>Osteo-<br /><em>arthritis</em></h3>
+      <p>Articular cartilage integrity depends on a matrix of chondroitin sulphate, keratan sulphate, and hyaluronic acid — all polysaccharides. OA begins silently: years before X-ray changes, cartilage GAG is leaching into synovial fluid and blood. A biochip that quantifies COMP (cartilage oligomeric matrix protein) and urinary CTX-II (collagen type II breakdown) enables pre-radiographic staging, flare monitoring, and response tracking for polysaccharide-based chondroprotective interventions — an area directly aligned with Polysacc's chemistry competency.</p>
+      <div class="biomarker-row">
+        <span class="biomarker-pill">COMP</span>
+        <span class="biomarker-pill">CTX-II</span>
+        <span class="biomarker-pill">Chondroitin-S fragments</span>
+      </div>
+    </div>
+
+    <div class="indication-card">
+      <span class="ic-num">04</span>
+      <span class="ic-tag">HL · Vasculature</span>
+      <h3>Hyper-<br /><em>lipidaemia</em></h3>
+      <p>Endothelial heparan sulphate proteoglycans are the primary binding sites for lipoprotein lipase and LDL receptor-related proteins — the gatekeepers of triglyceride and LDL clearance. When this glycocalyx is damaged — by oxidative stress, hyperglycaemia, or chronic inflammation — lipid accumulation accelerates independently of dietary input. Polysulphated polysaccharides including PPS have demonstrated heparin-like lipid-lowering activity. A biochip detecting endothelial glycocalyx degradation products links the vascular and metabolic dimensions of Polysacc's portfolio.</p>
+      <div class="biomarker-row">
+        <span class="biomarker-pill">Syndecan-1</span>
+        <span class="biomarker-pill">HS fragments</span>
+        <span class="biomarker-pill">Lp(a)</span>
+        <span class="biomarker-pill">ApoB</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="page-footer">
+    <span>Polysaccharide Chemistry Pvt Ltd — Biochip Platform Brief</span>
+    <span>Page 1 of 2 · Confidential</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ PAGE 2 -->
+<div class="page">
+
+  <div class="p2-header">
+    <h2 class="p2-heading">Platform Architecture &amp; <em>Strategic Rationale</em></h2>
+    <div class="doc-meta" style="text-align:right;">
+      POLYSACC BIOCHIP · JUNE 2026
+    </div>
+  </div>
+
+  <!-- PLATFORM DIAGRAM -->
+  <div class="section-tag">The Unified Sensor Platform</div>
+  <div class="platform-diagram">
+    <div class="platform-center">
+      <div class="pc-label">Core Detection Principle</div>
+      <div class="pc-name">Polysaccharide Layer Degradation Biosensor</div>
+      <p style="font-size:7pt; font-weight:300; color:var(--muted); margin-top:5px;">Microfluidic point-of-care chip · Urine &amp; capillary blood sample · GAG-family biomarker panel</p>
+    </div>
+    <div class="platform-spokes">
+      <div class="spoke">
+        <span class="spoke-abbr">IC/BPS</span>
+        <div class="spoke-full">Bladder GAG layer integrity</div>
+        <span class="spoke-marker">APF · GP51 · urinary GAG</span>
+      </div>
+      <div class="spoke">
+        <span class="spoke-abbr">DN</span>
+        <div class="spoke-full">Glomerular heparan sulphate</div>
+        <span class="spoke-marker">HS fragments · uACR · TGF-β1</span>
+      </div>
+      <div class="spoke">
+        <span class="spoke-abbr">OA</span>
+        <div class="spoke-full">Articular cartilage GAG matrix</div>
+        <span class="spoke-marker">COMP · CTX-II · CS fragments</span>
+      </div>
+      <div class="spoke">
+        <span class="spoke-abbr">HL</span>
+        <div class="spoke-full">Endothelial glycocalyx</div>
+        <span class="spoke-marker">Syndecan-1 · HS · ApoB</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STRATEGIC RATIONALE -->
+  <div class="section-tag" style="margin-top:14px;">Why Polysacc — Why Now</div>
+  <div class="two-col" style="margin-top:8px;">
+    <div>
+      <p class="body-text">
+        <strong>Molecular expertise.</strong> Polysacc's core competency is polysaccharide chemistry — the same molecular family that underpins every biomarker in this platform. No other Indian pharmaceutical company is positioned to develop, own, and commercialise a polysaccharide biosensor with this level of scientific coherence.
+      </p>
+      <p class="body-text">
+        <strong>Portfolio synergy.</strong> Each biochip indication has a direct pharmaceutical companion in the Polysacc portfolio: PPS for IC/BPS and DN, polysulphated polysaccharides for HL, and chondroprotective chemistry for OA. The biochip is not a standalone device — it is a companion diagnostic that identifies the right patient for the right Polysacc molecule.
+      </p>
+    </div>
+    <div>
+      <p class="body-text">
+        <strong>Unmet diagnostic need.</strong> All four conditions share a diagnostic failure mode: late detection. IC/BPS takes 5–7 years to name. DN is typically caught after established proteinuria. OA is staged radiographically, not biochemically. HL is monitored by lipid panels that miss glycocalyx dysfunction entirely. The biochip fills gaps that current laboratory infrastructure cannot address.
+      </p>
+      <p class="body-text">
+        <strong>Platform scalability.</strong> The microfluidic architecture is modular — a core GAG-detection chip with indication-specific biomarker panels as add-on modules. Initial development focuses on IC/BPS (highest clinical urgency; PPS companion diagnostic), with DN, OA, and HL as staged expansions.
+      </p>
+    </div>
+  </div>
+
+  <!-- DEVELOPMENT ROADMAP -->
+  <div class="section-tag" style="margin-top:14px;">Indicative Development Pathway</div>
+  <div class="timeline">
+    <div class="tl-step">
+      <span class="tl-num">Phase 01</span>
+      <div class="tl-title">Concept Validation</div>
+      <p class="tl-desc">Literature review of GAG biomarker panels; identify validated antibody/aptamer pairs for each indication; establish assay sensitivity targets.</p>
+    </div>
+    <div class="tl-step">
+      <span class="tl-num">Phase 02</span>
+      <div class="tl-title">Prototype Development</div>
+      <p class="tl-desc">Microfluidic chip design; IC/BPS panel first. Partner with MEMS fabrication lab. Bench validation vs. gold-standard ELISA in patient cohorts.</p>
+    </div>
+    <div class="tl-step">
+      <span class="tl-num">Phase 03</span>
+      <div class="tl-title">Clinical Pilot</div>
+      <p class="tl-desc">Multi-centre pilot study across IC/BPS, DN, OA indications. 50–100 patients per arm. Sensitivity / specificity vs. current diagnosis pathway.</p>
+    </div>
+    <div class="tl-step">
+      <span class="tl-num">Phase 04</span>
+      <div class="tl-title">Regulatory &amp; Commercial</div>
+      <p class="tl-desc">CDSCO IVD registration. CE-IVDR pathway for EU. Partner with device distribution network; position as PPS companion diagnostic in urology.</p>
+    </div>
+  </div>
+
+  <!-- WHAT WE ARE SEEKING APPROVAL TO PUBLISH -->
+  <div class="approval-box">
+    <h4>Seeking Approval — What Will Be Published on the Polysacc Website</h4>
+    <p style="font-size:7.5pt; font-weight:300; color:var(--muted); margin-bottom:10px; line-height:1.65;">
+      The following concept content is proposed for the <em>Uro-Gyn Devices</em> section of the Polysacc website, under the heading <strong>"Uro-Gyn Bladder Biochip Concept."</strong> Content is positioned as an <em>in-development initiative</em> — no clinical claims, no regulatory assertions. Framed as a strategic R&D direction and partnership invitation.
+    </p>
+    <ul class="approval-list">
+      <li>Platform concept overview — four indications, one molecular thread</li>
+      <li>Individual indication narratives: IC/BPS, DN, OA, HL</li>
+      <li>Biomarker panel overview for each indication</li>
+      <li>Linked pharmaceutical basket (PPS, Mirabegron, Vibegron)</li>
+      <li>Strategic rationale — why Polysacc / companion diagnostic positioning</li>
+      <li>Current status: "Concept stage — partnership and technology confirmation pending"</li>
+      <li>No clinical efficacy claims · No regulatory status claims</li>
+      <li>Invitation to partner with device / diagnostic development organisations</li>
+    </ul>
+  </div>
+
+  <div class="page-footer">
+    <span>Polysaccharide Chemistry Pvt Ltd — Biochip Platform Brief</span>
+    <span>Page 2 of 2 · Confidential · For Approval</span>
+  </div>
+</div>
+
+</body>
+</html>

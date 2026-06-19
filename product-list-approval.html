@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Polysacc — Product Basket List for Approval</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --ch: #1e231e;
+    --cr: #f8f6f1;
+    --sg: #8aab8a;
+    --sd: #4a7a4a;
+    --mu: #6b7a6b;
+    --am: #b07d3a;
+    --ln: rgba(138,171,138,0.2);
+  }
+  body { font-family:'DM Sans',sans-serif; background:#fff; color:var(--ch); font-size:7.5pt; line-height:1.5; }
+
+  .page {
+    width:210mm; min-height:297mm;
+    padding:11mm 13mm 14mm;
+    background:#fff;
+    page-break-after:always;
+    position:relative;
+  }
+  .page:last-child { page-break-after:auto; }
+
+  /* HEADER */
+  .doc-header {
+    display:flex; justify-content:space-between; align-items:flex-end;
+    padding-bottom:7px; border-bottom:0.5px solid var(--ln); margin-bottom:11px;
+  }
+  .doc-header h1 {
+    font-family:'Cormorant Garamond',serif; font-size:17pt; font-weight:300; line-height:1.1;
+  }
+  .doc-header h1 em { font-style:italic; color:var(--sd); }
+  .doc-header-right { text-align:right; font-family:'JetBrains Mono',monospace; font-size:5.5pt; color:var(--mu); line-height:1.7; letter-spacing:0.07em; text-transform:uppercase; }
+
+  /* BASKET GRID */
+  .basket-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:7px;
+  }
+  .basket-grid-2col {
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:7px;
+    margin-top:7px;
+  }
+
+  /* BASKET CARD */
+  .bcard {
+    border:0.5px solid var(--ln);
+    padding:9px 10px 8px;
+    position:relative;
+    overflow:hidden;
+  }
+  .bcard-ghost {
+    position:absolute; right:4px; bottom:-6px;
+    font-family:'Cormorant Garamond',serif; font-size:38pt; font-weight:300;
+    color:rgba(138,171,138,0.07); line-height:1; user-select:none; pointer-events:none;
+  }
+  .bcard-tag {
+    font-family:'JetBrains Mono',monospace; font-size:5pt; letter-spacing:0.15em;
+    text-transform:uppercase; color:var(--sg); margin-bottom:3px;
+  }
+  .bcard-name {
+    font-family:'Cormorant Garamond',serif; font-size:11pt; font-weight:300;
+    color:var(--ch); line-height:1.2; margin-bottom:3px;
+  }
+  .bcard-name em { font-style:italic; color:var(--sd); }
+  .bcard-area {
+    font-size:6pt; font-weight:300; color:var(--mu); margin-bottom:6px;
+    padding-bottom:5px; border-bottom:0.5px solid var(--ln);
+  }
+
+  /* PILL LIST */
+  .pill-list { display:flex; flex-wrap:wrap; gap:3px; }
+  .pill {
+    font-family:'DM Sans',sans-serif; font-size:6pt; font-weight:400;
+    color:var(--sd); background:rgba(138,171,138,0.07);
+    border:0.5px solid rgba(138,171,138,0.28); padding:2px 6px;
+    line-height:1.4;
+  }
+  .pill.amber { color:var(--am); background:rgba(176,125,58,0.06); border-color:rgba(176,125,58,0.25); }
+
+  /* COMPACT TABLE */
+  .ctable { width:100%; border-collapse:collapse; margin-top:5px; }
+  .ctable th {
+    font-family:'JetBrains Mono',monospace; font-size:5pt; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--sg); text-align:left;
+    padding:3px 5px; border-bottom:0.5px solid var(--ln); background:rgba(138,171,138,0.05);
+  }
+  .ctable td {
+    font-size:6.5pt; font-weight:300; color:var(--ch);
+    padding:3px 5px; border-bottom:0.5px solid rgba(138,171,138,0.1);
+    vertical-align:top;
+  }
+  .ctable tr:last-child td { border-bottom:none; }
+  .ctable td.note { color:var(--mu); font-size:6pt; }
+  .ctable td.gmp { font-family:'JetBrains Mono',monospace; font-size:5.5pt; color:var(--sg); }
+
+  /* SECTION LABEL */
+  .sub-label {
+    font-family:'JetBrains Mono',monospace; font-size:5pt; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--mu); margin:5px 0 3px;
+  }
+
+  /* SUMMARY TABLE */
+  .summary-table { width:100%; border-collapse:collapse; margin-top:5px; }
+  .summary-table th {
+    font-family:'JetBrains Mono',monospace; font-size:5pt; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--cr); background:var(--ch);
+    padding:5px 8px; text-align:left;
+  }
+  .summary-table td {
+    font-size:7pt; font-weight:300; padding:4px 8px;
+    border-bottom:0.5px solid var(--ln); color:var(--ch);
+  }
+  .summary-table tr:nth-child(even) td { background:rgba(138,171,138,0.04); }
+  .summary-table .total td { font-weight:500; background:rgba(138,171,138,0.1); border-top:0.5px solid var(--sg); }
+  .summary-table td.num { font-family:'JetBrains Mono',monospace; font-size:6.5pt; color:var(--sd); }
+
+  /* FOOTER */
+  .page-foot {
+    position:absolute; bottom:9mm; left:13mm; right:13mm;
+    display:flex; justify-content:space-between; align-items:center;
+    border-top:0.5px solid var(--ln); padding-top:4px;
+  }
+  .page-foot span {
+    font-family:'JetBrains Mono',monospace; font-size:5pt;
+    color:rgba(107,122,107,0.45); letter-spacing:0.07em; text-transform:uppercase;
+  }
+
+  @media print {
+    body { background:#fff; }
+    .page { width:210mm; padding:11mm 13mm 18mm; box-shadow:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ PAGE 1 ═══════════ -->
+<div class="page">
+  <div class="doc-header">
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:5.5pt;letter-spacing:0.15em;color:var(--sg);text-transform:uppercase;margin-bottom:4px;">Polysaccharide Chemistry Pvt Ltd</div>
+      <h1>Product Basket List — <em>For Approval</em></h1>
+    </div>
+    <div class="doc-header-right">June 2026<br/>Confidential<br/>Page 1 of 2</div>
+  </div>
+
+  <div class="basket-grid">
+
+    <!-- B01 -->
+    <div class="bcard">
+      <div class="bcard-ghost">01</div>
+      <div class="bcard-tag">Basket 01</div>
+      <div class="bcard-name">Polysaccharide &amp;<br/><em>Pentosan</em></div>
+      <div class="bcard-area">Bladder Health · IC/BPS</div>
+      <div class="pill-list">
+        <span class="pill">Pentosan Polysulfate Sodium (PPS)</span>
+      </div>
+      <div class="sub-label" style="margin-top:6px;">Indications on Website</div>
+      <div class="pill-list">
+        <span class="pill">IC / Bladder Pain Syndrome</span>
+        <span class="pill">Urinary Urgency</span>
+        <span class="pill">GAG Layer Repair</span>
+        <span class="pill">Antithrombotic</span>
+      </div>
+      <div style="margin-top:6px;font-size:5.5pt;font-style:italic;color:var(--sg);font-family:'DM Sans',sans-serif;">Only Indian manufacturer of oral PPS</div>
+    </div>
+
+    <!-- B02 -->
+    <div class="bcard">
+      <div class="bcard-ghost">02</div>
+      <div class="bcard-tag">Basket 02</div>
+      <div class="bcard-name">Iron Complex<br/><em>Finished Dosage</em></div>
+      <div class="bcard-area">Haematology · Anaemia</div>
+      <div class="sub-label">9 APIs — Basket Level</div>
+      <div class="pill-list">
+        <span class="pill">Ferrous Sulfate</span>
+        <span class="pill">Iron Polysaccharide</span>
+        <span class="pill">Iron III Hydroxide Polymaltose</span>
+        <span class="pill">Iron Protein Succinylate</span>
+        <span class="pill">Ferric Ammonium Citrate</span>
+        <span class="pill">Ferric Chloride</span>
+        <span class="pill">Ferrous Bisglycinate</span>
+        <span class="pill">Iron Sucrose</span>
+        <span class="pill">Iron Dextran</span>
+      </div>
+      <div class="sub-label">Also shown on product page</div>
+      <div class="pill-list">
+        <span class="pill">Iron III Polymaltose (Oral)</span>
+        <span class="pill">Ferric Carboxymaltose (IV-TDI)</span>
+        <span class="pill">Iron Isomaltoside (IV-TDI)</span>
+      </div>
+    </div>
+
+    <!-- B03 MCB -->
+    <div class="bcard">
+      <div class="bcard-ghost">03</div>
+      <div class="bcard-tag">Basket 03</div>
+      <div class="bcard-name">MCB ·<br/><em>Neuropathy</em></div>
+      <div class="bcard-area">Neurology · Neuropathy · Haematinics</div>
+      <div class="pill-list">
+        <span class="pill">Methylcobalamin (MCB)</span>
+      </div>
+      <div class="sub-label" style="margin-top:6px;">Indications on Website</div>
+      <div class="pill-list">
+        <span class="pill">Peripheral Neuropathy</span>
+        <span class="pill">Diabetic Neuropathy</span>
+        <span class="pill">B12 Deficiency</span>
+        <span class="pill">Neurological Adjunct</span>
+      </div>
+      <div style="margin-top:6px;font-size:5.5pt;color:var(--mu);font-weight:300;font-family:'DM Sans',sans-serif;">Active B12 coenzyme · Nerve repair · Asia first-line</div>
+    </div>
+
+  </div>
+
+  <div class="basket-grid" style="margin-top:7px;">
+
+    <!-- B04 STEROIDS -->
+    <div class="bcard">
+      <div class="bcard-ghost">04</div>
+      <div class="bcard-tag">Basket 04</div>
+      <div class="bcard-name">Steroids<br/><em>Corticosteroids</em></div>
+      <div class="bcard-area">Corticosteroids · Anti-inflammatory</div>
+      <table class="ctable">
+        <thead><tr><th>#</th><th>Product</th><th>Approval</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Clobetasol Propionate</td><td class="gmp">GMP / WHO GMP</td></tr>
+          <tr><td>2</td><td>Betamethasone Dipropionate</td><td class="gmp">GMP / WHO GMP</td></tr>
+          <tr><td>3</td><td>Betamethasone Valerate</td><td class="gmp">GMP / WHO GMP</td></tr>
+          <tr><td>4</td><td>Betamethasone Sodium Phosphate</td><td class="gmp">GMP</td></tr>
+          <tr><td>5</td><td>Beclomethasone Dipropionate</td><td class="gmp">GMP / WHO GMP</td></tr>
+          <tr><td>6</td><td>Dexamethasone Base</td><td class="gmp">GMP / WHO GMP</td></tr>
+          <tr><td>7</td><td>Dexamethasone Sodium Phosphate</td><td class="gmp">GMP / WHO GMP</td></tr>
+          <tr><td>8</td><td>Mometasone Furoate</td><td class="gmp">GMP / WHO GMP</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- B05 ANABOLIC -->
+    <div class="bcard">
+      <div class="bcard-ghost">05</div>
+      <div class="bcard-tag">Basket 05</div>
+      <div class="bcard-name">Anabolic Steroids<br/><em>Testosterone</em></div>
+      <div class="bcard-area">Endocrinology · TRT · Andrology</div>
+      <table class="ctable">
+        <thead><tr><th>#</th><th>Product</th><th>Approval</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Testosterone Base</td><td class="gmp">GMP</td></tr>
+          <tr><td>2</td><td>Testosterone Undecanoate</td><td class="gmp">GMP</td></tr>
+          <tr><td>3</td><td>Testosterone Decanoate</td><td class="gmp">GMP</td></tr>
+          <tr><td>4</td><td>Testosterone Cypionate</td><td class="gmp">GMP</td></tr>
+          <tr><td>5</td><td>Testosterone Propionate</td><td class="gmp">GMP</td></tr>
+          <tr><td>6</td><td>Testosterone Enanthate</td><td class="gmp">GMP</td></tr>
+          <tr><td>7</td><td>Testosterone Isocaproate</td><td class="gmp">GMP</td></tr>
+          <tr><td>8</td><td>Testosterone Phenyl Propionate</td><td class="gmp">GMP</td></tr>
+          <tr><td>9</td><td>Methyltestosterone</td><td class="gmp">GMP</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- B06 DEXAMETHASONE -->
+    <div class="bcard">
+      <div class="bcard-ghost">06</div>
+      <div class="bcard-tag">Basket 06 — DB / DSP</div>
+      <div class="bcard-name">High-Purity<br/><em>Dexamethasone</em></div>
+      <div class="bcard-area">Corticosteroids · Immunosuppressant</div>
+      <table class="ctable">
+        <thead><tr><th>Product</th><th>Form</th><th>Route</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Dexamethasone Base (DB)</td>
+            <td class="note">Free base (lipophilic)</td>
+            <td class="note">Oral · Topical · Ophthalmic · IM</td>
+          </tr>
+          <tr>
+            <td>Dexamethasone Sodium Phosphate (DSP)</td>
+            <td class="note">Water-soluble ester</td>
+            <td class="note">IV · IM · Intra-articular · Epidural</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:7px;font-size:5.5pt;color:var(--mu);font-style:italic;font-family:'DM Sans',sans-serif;">Mfd at BJPPL, Vapi, Gujarat (JV: Swati Spentose / Bhageria Industries)</div>
+      <div class="sub-label" style="margin-top:7px;">Sleep Solutions — Basket 09</div>
+      <div class="pill-list">
+        <span class="pill">Melatonin</span>
+      </div>
+      <div style="margin-top:4px;font-size:5.5pt;color:var(--mu);font-family:'DM Sans',sans-serif;">Neuroscience · Sleep Medicine · Circadian regulation</div>
+    </div>
+
+  </div>
+
+  <div class="page-foot">
+    <span>Polysaccharide Chemistry Pvt Ltd — Product Basket List for Approval</span>
+    <span>Page 1 of 2 · Confidential · June 2026</span>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 2 ═══════════ -->
+<div class="page">
+  <div class="doc-header">
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:5.5pt;letter-spacing:0.15em;color:var(--sg);text-transform:uppercase;margin-bottom:4px;">Polysaccharide Chemistry Pvt Ltd</div>
+      <h1>Product Basket List — <em>Baskets 07 – 09 &amp; Summary</em></h1>
+    </div>
+    <div class="doc-header-right">June 2026<br/>Confidential<br/>Page 2 of 2</div>
+  </div>
+
+  <div class="basket-grid">
+
+    <!-- B07 MENS HEALTH -->
+    <div class="bcard">
+      <div class="bcard-ghost">07</div>
+      <div class="bcard-tag">Basket 07</div>
+      <div class="bcard-name">Men's Health<br/><em>Urology · Bladder</em></div>
+      <div class="bcard-area">Urology · BPH · Overactive Bladder</div>
+      <table class="ctable">
+        <thead><tr><th>#</th><th>Product</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Pentosan Polysulfate Sodium</td><td class="note">IC-BPS · Bladder pain</td></tr>
+          <tr><td>2</td><td>Mirabegron</td><td class="note">Beta-3 · OAB</td></tr>
+          <tr><td>3</td><td>Tamsulosin</td><td class="note">Alpha-1 · BPH</td></tr>
+          <tr><td>4</td><td>Silodosin</td><td class="note">Alpha-1 · BPH</td></tr>
+          <tr><td>5</td><td>Dutasteride</td><td class="note">5-ARI · Prostate</td></tr>
+          <tr><td>6</td><td>Vibegron</td><td class="note">Beta-3 · OAB</td></tr>
+          <tr><td>7</td><td>Finasteride</td><td class="note">5-ARI · BPH / Alopecia</td></tr>
+        </tbody>
+      </table>
+      <div class="sub-label" style="margin-top:6px;">Combination Therapies Shown</div>
+      <div class="pill-list">
+        <span class="pill">Tamsulosin + Dutasteride</span>
+        <span class="pill">Silodosin + Dutasteride</span>
+        <span class="pill">Tamsulosin + Finasteride</span>
+        <span class="pill">Mirabegron + Solifenacin</span>
+      </div>
+    </div>
+
+    <!-- B08 WOMENS HEALTH -->
+    <div class="bcard">
+      <div class="bcard-ghost">08</div>
+      <div class="bcard-tag">Basket 08</div>
+      <div class="bcard-name">Women's Health<br/><em>Gynaecology · OCP</em></div>
+      <div class="bcard-area">Contraception · Endometriosis · HRT</div>
+      <div class="sub-label">12 APIs — Basket Level</div>
+      <div class="pill-list">
+        <span class="pill">Drospirenone</span><span class="pill">Desogestrel</span>
+        <span class="pill">Dienogest</span><span class="pill">Levonorgestrel</span>
+        <span class="pill">Norgestrel</span><span class="pill">Gestodene</span>
+        <span class="pill">Ethinyl Estradiol</span><span class="pill">Estradiol Valerate</span>
+        <span class="pill">Estradiol Cypionate</span><span class="pill">Estradiol Hemihydrate</span>
+        <span class="pill">Tibolone</span><span class="pill">Ulipristal Acetate</span>
+      </div>
+      <div class="sub-label" style="margin-top:5px;">Also Shown on Product Page</div>
+      <div class="pill-list">
+        <span class="pill amber">EE + Levonorgestrel (Combined OCP)</span>
+        <span class="pill amber">EE + Cyproterone (PCOS)</span>
+        <span class="pill amber">EE + Dienogest (Endometriosis)</span>
+        <span class="pill amber">Dienogest (Endometriosis)</span>
+        <span class="pill amber">Norethisterone</span>
+        <span class="pill amber">Medroxyprogesterone</span>
+        <span class="pill amber">Dydrogesterone</span>
+        <span class="pill amber">Estradiol (HRT)</span>
+        <span class="pill amber">Progesterone (HRT)</span>
+      </div>
+    </div>
+
+    <!-- B09 DEVICES -->
+    <div class="bcard">
+      <div class="bcard-ghost">09</div>
+      <div class="bcard-tag">Basket 09</div>
+      <div class="bcard-name">Uro-Gyn<br/><em>Devices</em></div>
+      <div class="bcard-area">Medical Devices · Urology · Gynaecology</div>
+      <div class="sub-label">Urology Devices</div>
+      <div class="pill-list">
+        <span class="pill">Catheters (Foley / Intermittent / Suprapubic)</span>
+        <span class="pill">Ureteral Stents (Double-J)</span>
+        <span class="pill">Urodynamic Systems</span>
+        <span class="pill">Cystoscopes</span>
+        <span class="pill">Bladder Scanners</span>
+        <span class="pill">Lithotripsy Systems</span>
+      </div>
+      <div class="sub-label" style="margin-top:5px;">Gynaecology Devices</div>
+      <div class="pill-list">
+        <span class="pill">IUDs (Copper / Hormonal)</span>
+        <span class="pill">Hysteroscopy Systems</span>
+        <span class="pill">Colposcopes</span>
+        <span class="pill">Endometrial Ablation Systems</span>
+        <span class="pill">Fertility Assessment Devices</span>
+        <span class="pill">Cervical Screening Systems</span>
+      </div>
+      <div class="sub-label" style="margin-top:5px;">Biochip — Concept Stage</div>
+      <div class="pill-list">
+        <span class="pill" style="color:var(--mu);border-style:dashed;">Bladder Biochip (IC/BPS · DN · OA · HL)</span>
+        <span class="pill" style="color:var(--mu);border-style:dashed;">Linked: PPS · Mirabegron · Vibegron</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SUMMARY TABLE -->
+  <div style="margin-top:10px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:5.5pt;letter-spacing:0.14em;text-transform:uppercase;color:var(--sg);margin-bottom:5px;">Summary — All Baskets</div>
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th style="width:10%">Basket</th>
+          <th style="width:28%">Name</th>
+          <th style="width:30%">Therapeutic Area</th>
+          <th style="width:32%">Molecules / Products</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">01</td><td>Polysaccharide &amp; Pentosan</td><td>Bladder Health · IC/BPS</td><td>1 API (PPS)</td></tr>
+        <tr><td class="num">02</td><td>Iron Complex</td><td>Haematology · Anaemia</td><td>9 basket APIs + 3 additional (product page)</td></tr>
+        <tr><td class="num">03</td><td>MCB · Neuropathy</td><td>Neurology · Haematinics</td><td>1 API (Methylcobalamin)</td></tr>
+        <tr><td class="num">04</td><td>Steroids (Corticosteroids)</td><td>Anti-inflammatory · Immunosuppressant</td><td>8 APIs (GMP / WHO GMP certified)</td></tr>
+        <tr><td class="num">05</td><td>Anabolic Steroids</td><td>Endocrinology · TRT · Andrology</td><td>9 APIs (Testosterone esters)</td></tr>
+        <tr><td class="num">06 DB/DSP</td><td>High-Purity Dexamethasone</td><td>Corticosteroids · Surgical · ICU</td><td>2 APIs (DB + DSP) — BJPPL, Vapi</td></tr>
+        <tr><td class="num">07</td><td>Men's Health — Urology</td><td>BPH · Overactive Bladder · IC/BPS</td><td>7 APIs + 4 combination therapies</td></tr>
+        <tr><td class="num">08</td><td>Women's Health — Gynaecology</td><td>OCP · Endometriosis · HRT</td><td>12 basket APIs + 9 product page molecules</td></tr>
+        <tr><td class="num">09</td><td>Uro-Gyn Devices</td><td>Medical Devices · Urology · Gynaecology</td><td>12 devices + Biochip (concept)</td></tr>
+        <tr><td class="num">10</td><td>Sleep Solutions</td><td>Neuroscience · Sleep Medicine</td><td>1 API (Melatonin)</td></tr>
+        <tr class="total">
+          <td class="num" colspan="3"><strong>Total — 10 Baskets · 9 Therapeutic Areas</strong></td>
+          <td><strong>~65+ molecules / products / devices</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:10px;border:0.5px solid var(--ln);padding:8px 10px;background:rgba(138,171,138,0.03);">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:5pt;letter-spacing:0.12em;text-transform:uppercase;color:var(--sg);margin-bottom:4px;">Notes for Approval</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;">
+      <div style="font-size:6.5pt;font-weight:300;color:var(--mu);">• Basket 03 (Vitamin B12) has been removed from the website per direction</div>
+      <div style="font-size:6.5pt;font-weight:300;color:var(--mu);">• Biochip is presented as concept only — no clinical or regulatory claims made</div>
+      <div style="font-size:6.5pt;font-weight:300;color:var(--mu);">• DB/DSP listed as separate basket (09b) but shown under Steroids section on website</div>
+      <div style="font-size:6.5pt;font-weight:300;color:var(--mu);">• Women's Health page molecules include both basket-level APIs and lifecycle-phase detailed molecules</div>
+    </div>
+  </div>
+
+  <div class="page-foot">
+    <span>Polysaccharide Chemistry Pvt Ltd — Product Basket List for Approval</span>
+    <span>Page 2 of 2 · Confidential · June 2026</span>
+  </div>
+</div>
+
+</body>
+</html>

@@ -2,7 +2,6 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import PolysaccharidePentosanSection from '@/components/PolysaccharidePentosanSection'
 import IronComplexSection from '@/components/IronComplexSection'
-import VitaminB12Section from '@/components/VitaminB12Section'
 import MCBSection from '@/components/MCBSection'
 import SteroidsSection from '@/components/SteroidsSection'
 import AnabolicSteroidsSection from '@/components/AnabolicSteroidsSection'
@@ -15,7 +14,6 @@ import SleepSection from '@/components/SleepSection'
 const CATEGORY_MAP: Record<string, { label: string; component: React.ComponentType }> = {
   'polysaccharide-pentosan': { label: 'Polysaccharide & Pentosan', component: PolysaccharidePentosanSection },
   'iron-complex':            { label: 'Iron Complex',              component: IronComplexSection },
-  'vitamin-b12':             { label: 'Vitamin B12',               component: VitaminB12Section },
   'mcb':                     { label: 'MCB · Neuropathy',          component: MCBSection },
   'steroids':                { label: 'Steroids',                  component: SteroidsSection },
   'anabolic-steroids':       { label: 'Anabolic Steroids',         component: AnabolicSteroidsSection },
@@ -27,7 +25,7 @@ const CATEGORY_MAP: Record<string, { label: string; component: React.ComponentTy
 }
 
 const CATEGORY_ORDER = [
-  'polysaccharide-pentosan', 'iron-complex', 'vitamin-b12', 'mcb', 'steroids',
+  'polysaccharide-pentosan', 'iron-complex', 'mcb', 'steroids',
   'anabolic-steroids', 'mens-health', 'womens-health', 'devices', 'db-dsp', 'sleep',
 ]
 
