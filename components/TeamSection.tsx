@@ -4,16 +4,18 @@ const TEAM = [
   {
     name: 'Vishal Jajodia',
     role: 'Promoter',
-    bio: 'Founder and driving force behind Polysacc — bringing together API manufacturing excellence with a vision for niche therapeutic partnerships across global markets.',
+    bio: 'Founder and CEO of Swati Spentose and Promoter of Polysacc. Over 25 years of experience in specialty API development and orphan diseases, leading scientific collaborations globally and pioneering the commercialization of Pentosan Polysulfate Sodium (PPS).',
     initial: 'VJ',
     highlight: true,
+    linkedin: 'https://www.linkedin.com/in/vishal-jajodia-31a34211/',
   },
   {
     name: 'Ashwani Shrivastav',
     role: 'Technical Advisor',
-    bio: 'Deep expertise across pharmaceutical chemistry and API development. Guides the technical direction of the portfolio with a focus on complex molecules and regulatory compliance.',
+    bio: 'Technical Advisor at Polysacc and Managing Director at NexGen Pharma Solutions. Over 20 years of expertise in pharmaceutical quality systems and global regulatory compliance, having served as Head of Quality at Ami Lifesciences and general manager at BDR Lifesciences.',
     initial: 'AS',
     highlight: false,
+    linkedin: 'https://www.linkedin.com/in/ashwani-shrivastav-b639a1242/',
   },
   {
     name: 'Rajender Rao Juvvadi',
@@ -21,6 +23,7 @@ const TEAM = [
     bio: 'Founder of Aurore Life Sciences and Chairman of GeneSys Biologics. Former MD & CEO of Solara Active Pharma Sciences with over 30 years of leadership in API development, CDMO operations, and global biopharma scale-up.',
     initial: 'RR',
     highlight: false,
+    linkedin: 'https://www.linkedin.com/in/rajenderraojuvvadi/',
   },
 ]
 
@@ -145,7 +148,31 @@ export default function TeamSection() {
                     lineHeight: 1.2,
                   }}
                 >
-                  {member.name}
+                  {member.linkedin ? (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        color: 'inherit',
+                        textDecoration: 'none',
+                        transition: 'color 0.2s',
+                        borderBottom: '0.5px solid transparent',
+                      }}
+                      onMouseEnter={(e) => {
+                        (e.currentTarget as HTMLElement).style.color = 'var(--sage)';
+                        (e.currentTarget as HTMLElement).style.borderBottomColor = 'rgba(138,171,138,0.5)';
+                      }}
+                      onMouseLeave={(e) => {
+                        (e.currentTarget as HTMLElement).style.color = 'inherit';
+                        (e.currentTarget as HTMLElement).style.borderBottomColor = 'transparent';
+                      }}
+                    >
+                      {member.name} <span style={{ fontSize: '0.8rem', verticalAlign: 'middle', opacity: 0.7 }}>↗</span>
+                    </a>
+                  ) : (
+                    member.name
+                  )}
                 </h3>
                 {member.role && (
                   <p
