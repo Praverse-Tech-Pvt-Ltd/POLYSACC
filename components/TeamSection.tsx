@@ -16,27 +16,11 @@ const TEAM = [
     highlight: false,
   },
   {
-    name: 'Rajendra Rao',
-    role: '',
-    bio: '',
+    name: 'Rajender Rao Juvvadi',
+    role: 'Strategic Advisor',
+    bio: 'Founder of Aurore Life Sciences and Chairman of GeneSys Biologics. Former MD & CEO of Solara Active Pharma Sciences with over 30 years of leadership in API development, CDMO operations, and global biopharma scale-up.',
     initial: 'RR',
     highlight: false,
-  },
-  {
-    name: '',
-    role: '',
-    bio: '',
-    initial: '',
-    highlight: false,
-    placeholder: true,
-  },
-  {
-    name: '',
-    role: '',
-    bio: '',
-    initial: '',
-    highlight: false,
-    placeholder: true,
   },
 ]
 
@@ -110,7 +94,7 @@ export default function TeamSection() {
           }}
           className="responsive-three"
         >
-          {TEAM.filter((m) => !m.placeholder).map((member) => (
+          {TEAM.map((member) => (
             <div
               key={member.name || member.initial}
               style={{
@@ -194,49 +178,6 @@ export default function TeamSection() {
                   {member.bio}
                 </p>
               )}
-            </div>
-          ))}
-
-          {/* Placeholder slots */}
-          {[1, 2].map((n) => (
-            <div
-              key={`placeholder-${n}`}
-              style={{
-                border: '0.5px dashed rgba(138,171,138,0.2)',
-                padding: '2rem',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '0.75rem',
-                minHeight: '180px',
-              }}
-            >
-              <div
-                style={{
-                  width: 48,
-                  height: 48,
-                  borderRadius: '50%',
-                  border: '0.5px dashed rgba(138,171,138,0.3)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '1.25rem', color: 'rgba(138,171,138,0.3)' }}>+</span>
-              </div>
-              <p
-                style={{
-                  fontFamily: 'var(--font-dm-sans)',
-                  fontSize: '0.75rem',
-                  fontWeight: 300,
-                  color: 'rgba(138,171,138,0.3)',
-                  margin: 0,
-                  letterSpacing: '0.04em',
-                }}
-              >
-                Position open
-              </p>
             </div>
           ))}
         </div>
