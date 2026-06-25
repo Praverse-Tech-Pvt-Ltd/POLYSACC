@@ -171,7 +171,7 @@ export default function PolysaccharidePentosanSection() {
         </div>
       </section>
 
-      {/* Heparanase Inhibitor Promo Section */}
+      {/* Heparanase Section */}
       <section
         style={{
           background: 'var(--sage-pale)',
@@ -193,7 +193,7 @@ export default function PolysaccharidePentosanSection() {
             {/* Left Column: Copy */}
             <div>
               <p className="section-tag" style={{ marginBottom: '1.25rem' }}>
-                Pipeline &amp; Innovation
+                Target Biology
               </p>
               <h2
                 style={{
@@ -205,10 +205,7 @@ export default function PolysaccharidePentosanSection() {
                   marginBottom: '1.5rem',
                 }}
               >
-                Heparanase Inhibitors &amp;{' '}
-                <span style={{ fontStyle: 'italic', color: 'var(--sage-deep)' }}>
-                  Heparan Sulfate Mimetics
-                </span>
+                Heparanase
               </h2>
               <p
                 style={{
@@ -220,7 +217,7 @@ export default function PolysaccharidePentosanSection() {
                   marginBottom: '1.5rem',
                 }}
               >
-                Beyond Pentosan Polysulfate Sodium (PPS), Polysaccharide Chemistry Pvt Ltd is pioneering the exploration of next-generation <strong>Heparanase Inhibitors</strong>. Heparanase is the only mammalian endo-glucuronidase capable of cleaving heparan sulfate side chains of proteoglycans in the extracellular matrix (ECM).
+                Heparanase is the only mammalian endo-glucuronidase capable of cleaving heparan sulfate side chains of proteoglycans in the extracellular matrix (ECM). It is an essential enzyme involved in tissue remodeling, cell migration, and regulating the structure of the cell surface and basement membrane.
               </p>
               <p
                 style={{
@@ -232,132 +229,84 @@ export default function PolysaccharidePentosanSection() {
                   marginBottom: '1.5rem',
                 }}
               >
-                Upregulation of heparanase degrades the protective endothelial glycocalyx and mucosal linings, driving tumor metastasis, angiogenesis, and chronic inflammatory cascades. Our R&amp;D pipeline is focused on novel lipophilically-modified sulfated oligosaccharides (such as the cholestanol-conjugated hexasaccharide structure pictured) that bind and inhibit heparanase with high selectivity.
+                Upregulation of heparanase leads to the degradation of the protective endothelial glycocalyx and mucosal linings. This breakdown disrupts the barrier integrity of tissues and blood vessels, promoting inflammatory cell infiltration and driving pathologies in chronic inflammatory diseases and vascular disorders.
               </p>
-              <div
-                style={{
-                  display: 'flex',
-                  gap: '1rem',
-                  marginTop: '2rem',
-                }}
-                className="responsive-split mobile-gap"
-              >
-                <div
-                  style={{
-                    background: 'rgba(248,246,241,0.65)',
-                    border: '0.5px solid rgba(138,171,138,0.25)',
-                    padding: '1.25rem',
-                    flex: 1,
-                  }}
-                >
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-jetbrains)',
-                      fontSize: '0.65rem',
-                      fontWeight: 600,
-                      color: 'var(--sage-deep)',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.08em',
-                      margin: '0 0 0.5rem',
-                    }}
-                  >
-                    Target Mechanism
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-dm-sans)',
-                      fontSize: '0.78rem',
-                      fontWeight: 300,
-                      color: 'var(--charcoal)',
-                      margin: 0,
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    Blocks enzymatic degradation of tissue matrices and protects endothelial barriers from inflammatory shedding.
-                  </p>
-                </div>
-                <div
-                  style={{
-                    background: 'rgba(176,125,58,0.04)',
-                    border: '0.5px solid rgba(176,125,58,0.25)',
-                    padding: '1.25rem',
-                    flex: 1,
-                  }}
-                >
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-jetbrains)',
-                      fontSize: '0.65rem',
-                      fontWeight: 600,
-                      color: 'var(--amber)',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.08em',
-                      margin: '0 0 0.5rem',
-                    }}
-                  >
-                    Structural Advantage
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-dm-sans)',
-                      fontSize: '0.78rem',
-                      fontWeight: 300,
-                      color: 'var(--charcoal)',
-                      margin: 0,
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    Cholestanol conjugation increases lipophilic tissue penetration and enhances systemic bioavailability of the polysaccharide chain.
-                  </p>
-                </div>
-              </div>
             </div>
 
-            {/* Right Column: Image */}
+            {/* Right Column: Key Details */}
             <div
               style={{
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
+                gap: '1.5rem',
               }}
             >
               <div
                 style={{
-                  background: 'transparent',
+                  background: 'rgba(248,246,241,0.65)',
                   border: '0.5px solid rgba(138,171,138,0.25)',
-                  padding: '2.5rem 1.5rem',
-                  boxShadow: '0 12px 36px rgba(44,44,42,0.06)',
-                  width: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: '2px',
+                  padding: '1.5rem 1.75rem',
                 }}
               >
-                <img
-                  src="/heparanase-structure.png"
-                  alt="Chemical Structure of Heparanase Inhibitor (PG545 / Pixatimod)"
+                <p
                   style={{
-                    maxWidth: '100%',
-                    height: 'auto',
-                    display: 'block',
+                    fontFamily: 'var(--font-jetbrains)',
+                    fontSize: '0.65rem',
+                    fontWeight: 600,
+                    color: 'var(--sage-deep)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.08em',
+                    margin: '0 0 0.5rem',
                   }}
-                />
+                >
+                  Enzymatic Activity
+                </p>
+                <p
+                  style={{
+                    fontFamily: 'var(--font-dm-sans)',
+                    fontSize: '0.85rem',
+                    fontWeight: 300,
+                    color: 'var(--charcoal)',
+                    margin: 0,
+                    lineHeight: 1.65,
+                  }}
+                >
+                  Cleaves heparan sulfate side chains of proteoglycans, leading to disassembly of the extracellular matrix and release of matrix-bound active molecules.
+                </p>
               </div>
-              <p
+              <div
                 style={{
-                  fontFamily: 'var(--font-jetbrains)',
-                  fontSize: '0.58rem',
-                  color: 'var(--muted)',
-                  marginTop: '1rem',
-                  textAlign: 'center',
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
+                  background: 'rgba(176,125,58,0.04)',
+                  border: '0.5px solid rgba(176,125,58,0.25)',
+                  padding: '1.5rem 1.75rem',
                 }}
               >
-                Structure: Cholestanol-conjugated sulfated oligosaccharide heparanase inhibitor
-              </p>
+                <p
+                  style={{
+                    fontFamily: 'var(--font-jetbrains)',
+                    fontSize: '0.65rem',
+                    fontWeight: 600,
+                    color: 'var(--amber)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.08em',
+                    margin: '0 0 0.5rem',
+                  }}
+                >
+                  Pathological Role
+                </p>
+                <p
+                  style={{
+                    fontFamily: 'var(--font-dm-sans)',
+                    fontSize: '0.85rem',
+                    fontWeight: 300,
+                    color: 'var(--charcoal)',
+                    margin: 0,
+                    lineHeight: 1.65,
+                  }}
+                >
+                  Degrades the endothelial glycocalyx and mucosal linings. Uncontrolled activity impairs organ barrier function and propagates inflammatory responses.
+                </p>
+              </div>
             </div>
           </div>
         </div>
