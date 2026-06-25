@@ -4,7 +4,7 @@ import { COMPANY } from '@/lib/data'
 const companyLinks = [
   { label: 'About',     href: '/about' },
   { label: 'Science',   href: '/science' },
-  { label: 'Portfolio', href: '/portfolio' },
+  { label: 'Product Portfolio', href: '/product-portfolio' },
   { label: 'Contact',   href: '/contact' },
 ]
 
@@ -96,6 +96,7 @@ export default function Footer() {
         {/* Column 3 — Products */}
         <div>
           <p style={colHeading}>Products &amp; Initiatives</p>
+          {/*
           <a
             href="https://elmiron.in"
             target="_blank"
@@ -112,6 +113,7 @@ export default function Footer() {
           >
             Missed Bladder Disease ↗
           </a>
+          */}
         </div>
 
         {/* Column 4 — Contact */}

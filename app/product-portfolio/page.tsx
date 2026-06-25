@@ -282,17 +282,16 @@ function BasketCard({ basket, index }: { basket: typeof BASKETS[number]; index: 
   )
 }
 
-export default function CataloguePage() {
+export default function ProductPortfolioPage() {
   return (
     <>
-      <NicheStorylineSection />
       <style>{`
         @keyframes bgShift {
           0%   { background-position: 0% 50%; }
           50%  { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
         }
-        .catalogue-bg {
+        .product-portfolio-bg {
           background: linear-gradient(
             -40deg,
             var(--hero-grey),
@@ -304,21 +303,21 @@ export default function CataloguePage() {
           background-size: 400% 400%;
           animation: bgShift 22s ease infinite;
         }
-        .catalogue-grid {
+        .product-portfolio-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 20px;
         }
         @media (max-width: 900px) {
-          .catalogue-grid { grid-template-columns: repeat(2, 1fr); }
+          .product-portfolio-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 580px) {
-          .catalogue-grid { grid-template-columns: 1fr; }
+          .product-portfolio-grid { grid-template-columns: 1fr; }
         }
       `}</style>
 
       <section
-        className="catalogue-bg"
+        className="product-portfolio-bg"
         style={{ minHeight: '100vh', padding: '8rem 5rem 6rem' }}
       >
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
@@ -340,7 +339,7 @@ export default function CataloguePage() {
                 margin: '0 0 1rem',
               }}
             >
-              Therapeutic Catalogue
+              Therapeutic Product Portfolio
             </p>
             <h1
               style={{
@@ -374,7 +373,7 @@ export default function CataloguePage() {
 
           {/* 3×3 Grid */}
           <motion.div
-            className="catalogue-grid"
+            className="product-portfolio-grid"
             variants={container}
             initial="hidden"
             animate="visible"
@@ -404,6 +403,7 @@ export default function CataloguePage() {
 
         </div>
       </section>
+      <NicheStorylineSection />
     </>
   )
 }

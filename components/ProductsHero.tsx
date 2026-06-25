@@ -24,8 +24,8 @@ export default function ProductsHero() {
             marginBottom: '1.5rem',
           }}
         >
-          Our Product{' '}
-          <span style={{ color: 'var(--sage)', fontStyle: 'italic' }}>Catalogue</span>
+          Our{' '}
+          <span style={{ color: 'var(--sage)', fontStyle: 'italic' }}>Product Portfolio</span>
         </h1>
         <p
           style={{

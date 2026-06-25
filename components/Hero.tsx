@@ -182,8 +182,8 @@ export default function Hero() {
             flexWrap: 'wrap',
           }}
         >
-          <Link href="/portfolio" className="btn-primary">
-            Our Portfolio
+          <Link href="/product-portfolio" className="btn-primary">
+            Product Portfolio
           </Link>
           <Link href="/about" className="btn-ghost-charcoal">
             About the Company

@@ -4,8 +4,10 @@ import { CLINICAL_STUDIES } from '@/lib/data'
 
 export const metadata: Metadata = {
   title: 'The Science',
+  // description:
+  //   'The polysaccharide science behind Elmiron® — GAG layer biology, PPS mechanism, and 35 years of clinical evidence.',
   description:
-    'The polysaccharide science behind Elmiron® — GAG layer biology, PPS mechanism, and 35 years of clinical evidence.',
+    'The polysaccharide science — GAG layer biology, PPS mechanism, and 35 years of clinical evidence.',
 }
 
 export default function SciencePage() {

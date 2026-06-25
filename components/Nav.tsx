@@ -13,11 +13,11 @@ type NavLink = {
 }
 
 const NAV_LINKS: NavLink[] = [
-  { label: 'About',      href: '/about',      small: false },
-  { label: 'Science',    href: '/science',    small: false },
-  { label: 'Portfolio',  href: '/portfolio',  small: false },
-  { label: 'Catalogue',  href: '/catalogue',  small: false },
-  { label: 'Contact',    href: '/contact',    small: false },
+  { label: 'About',              href: '/about',              small: false },
+  { label: 'Science',            href: '/science',            small: false },
+  // { label: 'Portfolio',          href: '/product-portfolio',          small: false },
+  { label: 'Product Portfolio',  href: '/product-portfolio',  small: false },
+  { label: 'Contact',            href: '/contact',            small: false },
 ]
 
 function isActivePath(pathname: string, href: string) {
@@ -126,7 +126,7 @@ export default function Nav() {
           })}
         </div>
 
-        {/* Desktop CTA buttons */}
+        {/*
         <div className="hidden lg:flex" style={{ gap: '0.75rem', alignItems: 'center' }}>
           <ExternalBtn
             href="https://elmiron.in"
@@ -139,6 +139,7 @@ export default function Nav() {
             primary={false}
           />
         </div>
+        */}
 
         {/* Mobile hamburger */}
         <button
@@ -242,6 +243,7 @@ export default function Nav() {
               </Link>
             )
           })}
+          {/*
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', alignItems: 'center' }}>
             <a
               href="https://elmiron.in"
@@ -272,6 +274,7 @@ export default function Nav() {
               missedbladderdisease.com ↗
             </a>
           </div>
+          */}
         </div>
       )}
     </>

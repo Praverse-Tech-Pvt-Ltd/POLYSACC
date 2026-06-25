@@ -11,7 +11,7 @@ export default function HomePage() {
       <Hero />
       <CompanyStatement />
       <ScienceSection />
-      <PortfolioGrid />
+      {/* <PortfolioGrid /> */}
 
       {/* Contact section */}
       <section

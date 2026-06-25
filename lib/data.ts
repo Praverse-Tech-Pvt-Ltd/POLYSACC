@@ -17,17 +17,17 @@ export const COMPANY = {
   phone: '+91 80972 53466',
 } as const
 
-export const LEADERSHIP = [
-  {
-    name: 'Vishal',
-    title: '',
-    role: '',
-    email: 'vishal@polysacc.com',
-    bio: '',
-  },
-] as const
-
-export const PORTFOLIO = [
+export const PORTFOLIO: readonly {
+  readonly type: string
+  readonly name: string
+  readonly subtitle: string
+  readonly description: string
+  readonly url: string
+  readonly cta: string
+  readonly tag: string
+  readonly detail: string
+}[] = [
+  /*
   {
     type: 'Product',
     name: 'Elmiron®',
@@ -50,7 +50,8 @@ export const PORTFOLIO = [
     tag: 'Medical Education',
     detail: 'IC/BPS · Diagnostic Frameworks · GIBBS Method',
   },
-] as const
+  */
+]
 
 export const SCIENCE_PILLARS = [
   {

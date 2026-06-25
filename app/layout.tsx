@@ -31,13 +31,21 @@ export const metadata: Metadata = {
     default: 'Polysaccharide Chemistry Pvt Ltd',
     template: '%s | Polysaccharide Chemistry',
   },
+  // description:
+  //   'Polysaccharide Chemistry Pvt Ltd — advancing polysaccharide-based pharmaceutical science. Manufacturer of Elmiron® (Pentosan Polysulfate Sodium). Mumbai, India.',
   description:
-    'Polysaccharide Chemistry Pvt Ltd — advancing polysaccharide-based pharmaceutical science. Manufacturer of Elmiron® (Pentosan Polysulfate Sodium). Mumbai, India.',
+    'Polysaccharide Chemistry Pvt Ltd — advancing polysaccharide-based pharmaceutical science. Mumbai, India.',
+  // keywords: [
+  //   'polysaccharide chemistry',
+  //   'pentosan polysulfate sodium',
+  //   'pharmaceutical chemistry India',
+  //   'elmiron manufacturer',
+  //   'GAG layer therapeutics',
+  // ],
   keywords: [
     'polysaccharide chemistry',
     'pentosan polysulfate sodium',
     'pharmaceutical chemistry India',
-    'elmiron manufacturer',
     'GAG layer therapeutics',
   ],
   openGraph: {
