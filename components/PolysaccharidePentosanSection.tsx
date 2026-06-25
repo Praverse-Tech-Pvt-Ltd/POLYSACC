@@ -231,82 +231,131 @@ export default function PolysaccharidePentosanSection() {
               >
                 Upregulation of heparanase leads to the degradation of the protective endothelial glycocalyx and mucosal linings. This breakdown disrupts the barrier integrity of tissues and blood vessels, promoting inflammatory cell infiltration and driving pathologies in chronic inflammatory diseases and vascular disorders.
               </p>
+
+              <div
+                style={{
+                  display: 'flex',
+                  gap: '1rem',
+                  marginTop: '2rem',
+                }}
+                className="responsive-split mobile-gap"
+              >
+                <div
+                  style={{
+                    background: 'rgba(248,246,241,0.65)',
+                    border: '0.5px solid rgba(138,171,138,0.25)',
+                    padding: '1.25rem',
+                    flex: 1,
+                  }}
+                >
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-jetbrains)',
+                      fontSize: '0.65rem',
+                      fontWeight: 600,
+                      color: 'var(--sage-deep)',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.08em',
+                      margin: '0 0 0.5rem',
+                    }}
+                  >
+                    Enzymatic Activity
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-dm-sans)',
+                      fontSize: '0.78rem',
+                      fontWeight: 300,
+                      color: 'var(--charcoal)',
+                      margin: 0,
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    Cleaves heparan sulfate side chains of proteoglycans, leading to disassembly of the extracellular matrix and release of matrix-bound active molecules.
+                  </p>
+                </div>
+                <div
+                  style={{
+                    background: 'rgba(176,125,58,0.04)',
+                    border: '0.5px solid rgba(176,125,58,0.25)',
+                    padding: '1.25rem',
+                    flex: 1,
+                  }}
+                >
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-jetbrains)',
+                      fontSize: '0.65rem',
+                      fontWeight: 600,
+                      color: 'var(--amber)',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.08em',
+                      margin: '0 0 0.5rem',
+                    }}
+                  >
+                    Pathological Role
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-dm-sans)',
+                      fontSize: '0.78rem',
+                      fontWeight: 300,
+                      color: 'var(--charcoal)',
+                      margin: 0,
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    Degrades the endothelial glycocalyx and mucosal linings. Uncontrolled activity impairs organ barrier function and propagates inflammatory responses.
+                  </p>
+                </div>
+              </div>
             </div>
 
-            {/* Right Column: Key Details */}
+            {/* Right Column: Image */}
             <div
               style={{
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '1.5rem',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
               <div
                 style={{
-                  background: 'rgba(248,246,241,0.65)',
+                  background: 'transparent',
                   border: '0.5px solid rgba(138,171,138,0.25)',
-                  padding: '1.5rem 1.75rem',
+                  padding: '2.5rem 1.5rem',
+                  boxShadow: '0 12px 36px rgba(44,44,42,0.06)',
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: '2px',
                 }}
               >
-                <p
+                <img
+                  src="/heparanase-structure.png"
+                  alt="Chemical Structure associated with Heparanase"
                   style={{
-                    fontFamily: 'var(--font-jetbrains)',
-                    fontSize: '0.65rem',
-                    fontWeight: 600,
-                    color: 'var(--sage-deep)',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.08em',
-                    margin: '0 0 0.5rem',
+                    maxWidth: '100%',
+                    height: 'auto',
+                    display: 'block',
                   }}
-                >
-                  Enzymatic Activity
-                </p>
-                <p
-                  style={{
-                    fontFamily: 'var(--font-dm-sans)',
-                    fontSize: '0.85rem',
-                    fontWeight: 300,
-                    color: 'var(--charcoal)',
-                    margin: 0,
-                    lineHeight: 1.65,
-                  }}
-                >
-                  Cleaves heparan sulfate side chains of proteoglycans, leading to disassembly of the extracellular matrix and release of matrix-bound active molecules.
-                </p>
+                />
               </div>
-              <div
+              <p
                 style={{
-                  background: 'rgba(176,125,58,0.04)',
-                  border: '0.5px solid rgba(176,125,58,0.25)',
-                  padding: '1.5rem 1.75rem',
+                  fontFamily: 'var(--font-jetbrains)',
+                  fontSize: '0.58rem',
+                  color: 'var(--muted)',
+                  marginTop: '1rem',
+                  textAlign: 'center',
+                  letterSpacing: '0.04em',
+                  textTransform: 'uppercase',
                 }}
               >
-                <p
-                  style={{
-                    fontFamily: 'var(--font-jetbrains)',
-                    fontSize: '0.65rem',
-                    fontWeight: 600,
-                    color: 'var(--amber)',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.08em',
-                    margin: '0 0 0.5rem',
-                  }}
-                >
-                  Pathological Role
-                </p>
-                <p
-                  style={{
-                    fontFamily: 'var(--font-dm-sans)',
-                    fontSize: '0.85rem',
-                    fontWeight: 300,
-                    color: 'var(--charcoal)',
-                    margin: 0,
-                    lineHeight: 1.65,
-                  }}
-                >
-                  Degrades the endothelial glycocalyx and mucosal linings. Uncontrolled activity impairs organ barrier function and propagates inflammatory responses.
-                </p>
-              </div>
+                Structure: Cholestanol-conjugated sulfated oligosaccharide
+              </p>
             </div>
           </div>
         </div>
