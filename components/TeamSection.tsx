@@ -2,20 +2,20 @@
 
 const TEAM = [
   {
+    name: 'Rajender Rao Juvvadi',
+    role: 'Strategic Architect & Advisor',
+    bio: 'Founder of Aurore Life Sciences and Chairman of GeneSys Biologics. Former MD & CEO of Solara Active Pharma Sciences with over 30 years of leadership in API development, CDMO operations, and global biopharma scale-up — instrumental in shaping the strategic foundation of Polysacc.',
+    initial: 'RR',
+    highlight: true,
+    linkedin: 'https://www.linkedin.com/in/rajenderraojuvvadi/',
+  },
+  {
     name: 'Vishal Jajodia',
-    role: 'Promoter',
-    bio: 'Founder and CEO of Swati Spentose and Promoter of Polysacc. Over 25 years of experience in specialty API development and orphan diseases, leading scientific collaborations globally and pioneering the commercialization of Pentosan Polysulfate Sodium (PPS).',
+    role: 'Founder',
+    bio: 'Founder and CEO of Swati Spentose and Founder of Polysacc. Over 25 years of experience in specialty API development and orphan diseases, leading scientific collaborations globally and pioneering the commercialization of Pentosan Polysulfate Sodium (PPS).',
     initial: 'VJ',
     highlight: true,
     linkedin: 'https://www.linkedin.com/in/vishal-jajodia-31a34211/',
-  },
-  {
-    name: 'Rajender Rao Juvvadi',
-    role: 'Strategic Advisor',
-    bio: 'Founder of Aurore Life Sciences and Chairman of GeneSys Biologics. Former MD & CEO of Solara Active Pharma Sciences with over 30 years of leadership in API development, CDMO operations, and global biopharma scale-up.',
-    initial: 'RR',
-    highlight: false,
-    linkedin: 'https://www.linkedin.com/in/rajenderraojuvvadi/',
   },
 ]
 

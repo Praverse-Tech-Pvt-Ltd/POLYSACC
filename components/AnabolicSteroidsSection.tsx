@@ -27,32 +27,90 @@ const ANABOLIC_NARRATIVE = [
   `Manufacturing testosterone APIs to GMP specification for controlled substance markets requires a different organisational infrastructure than standard pharmaceutical API production. Controlled substance licences, import/export permits, batch documentation for regulatory authorities, and supply chain traceability are pre-conditions — not afterthoughts. Polysacc's capability in this category reflects a compliance infrastructure that supports legitimate pharmaceutical supply chains to regulated markets globally.`,
 ]
 
-const ANABOLIC_STEROIDS_MALE = [
-  'Testosterone Base',
-  'Testosterone Undecanoate',
-  'Testosterone Decanoate',
-  'Testosterone Cypionate',
-  'Testosterone Propionate',
-  'Testosterone Enanthate',
-  'Testosterone Isocaproate',
-  'Testosterone Phenyl Propionate',
-  'Methyltestosterone',
-]
+type SteroidItem = {
+  name: string
+  alias?: string
+  body: string
+}
 
-const ANABOLIC_STEROIDS_FEMALE = [
-  'Stanozolol',
-  'Oxandrolone',
-  'Oxymetholone',
-  'Methenolone Enanthate',
-  'Trenbolone Enanthate',
-  'Boldenone Undecylenate',
-  'Methandienone (Methandrostenolone)',
-  'Clenbuterol HCl',
-  'Drostanolone Enanthate',
+type SteroidFamily = {
+  number: string
+  title: string
+  subtitle: string
+  intro: string
+  accent: 'sage' | 'amber'
+  items: SteroidItem[]
+}
+
+const STEROID_FAMILIES: SteroidFamily[] = [
+  {
+    number: '01',
+    title: 'Pure Testosterone & Testosterone Esters',
+    subtitle: '8 APIs · GMP',
+    intro: 'Bioidentical testosterone molecules chemically attached to an ester chain. The ester does not change how the hormone works — it determines only how slowly or quickly it releases into the bloodstream.',
+    accent: 'sage',
+    items: [
+      { name: 'Testosterone Base', body: 'Pure testosterone with no ester attached. Acts almost instantly and leaves the body rapidly.' },
+      { name: 'Testosterone Propionate', body: 'A short-acting ester; requires frequent administration.' },
+      { name: 'Testosterone Phenyl Propionate', body: 'A short-to-medium acting ester.' },
+      { name: 'Testosterone Isocaproate', body: 'A medium-acting ester, often found in multi-ester hormone blends.' },
+      { name: 'Testosterone Enanthate', body: 'A slow-acting, long ester — one of the most common base compounds used medically and athletically.' },
+      { name: 'Testosterone Cypionate', body: 'A slow-acting, long ester highly similar in timing to Enanthate.' },
+      { name: 'Testosterone Decanoate', body: 'A very slow-acting, long-lasting ester.' },
+      { name: 'Testosterone Undecanoate', body: 'An exceptionally long-acting ester used for extended hormone replacement intervals.' },
+    ],
+  },
+  {
+    number: '02',
+    title: 'Synthetic Testosterone Derivatives',
+    subtitle: '3 APIs · GMP',
+    intro: 'Molecules that started as testosterone but were structurally altered in a lab to amplify anabolic (tissue-building) properties or to survive oral administration.',
+    accent: 'sage',
+    items: [
+      { name: 'Methyltestosterone', body: "An oral version of testosterone altered at the 17th carbon position so the liver doesn't immediately destroy it." },
+      { name: 'Methandienone', alias: 'Methandrostenolone · Dianabol', body: 'A highly potent, orally active synthetic derivative designed for massive glycogen retention, protein synthesis, and rapid weight gain.' },
+      { name: 'Boldenone Undecylenate', alias: 'Equipoise', body: 'A structural derivative of testosterone designed to heavily increase red blood cell production and steady, lean muscle mass.' },
+    ],
+  },
+  {
+    number: '03',
+    title: 'Dihydrotestosterone (DHT) Derivatives',
+    subtitle: '5 APIs · GMP',
+    intro: 'Structural modifications of DHT, a naturally occurring, highly androgenic male hormone. Because DHT cannot convert into estrogen, these compounds are primarily used for building lean mass without water retention.',
+    accent: 'amber',
+    items: [
+      { name: 'Stanozolol', alias: 'Winstrol', body: 'An oral or injectable compound heavily favoured for athletic speed and muscle hardness.' },
+      { name: 'Oxandrolone', alias: 'Anavar', body: 'A mild oral compound frequently used to preserve muscle tissue during calorie deficits or severe trauma recovery.' },
+      { name: 'Oxymetholone', alias: 'Anadrol', body: 'A heavily modified, potent oral DHT derivative used medically for severe anaemia, and off-label for extreme strength and bulk.' },
+      { name: 'Methenolone Enanthate', alias: 'Primobolan', body: 'A mild, long-acting injectable steroid with high anabolic efficiency and a low side-effect profile.' },
+      { name: 'Drostanolone Enanthate', alias: 'Masteron', body: 'A long-acting injectable compound heavily used to increase muscle density and definition.' },
+    ],
+  },
+  {
+    number: '04',
+    title: '19-Nortestosterone (19-Nor) Derivatives',
+    subtitle: '1 API · GMP',
+    intro: 'Altered molecules missing the carbon atom at the 19th position. They interact heavily with progesterone receptors and rank among the most powerful, tissue-binding compounds in existence.',
+    accent: 'amber',
+    items: [
+      { name: 'Trenbolone Enanthate', body: 'A highly modified, long-acting injectable compound — roughly five times more anabolic and androgenic than basic testosterone, causing massive muscle gains and aggressive fat oxidation.' },
+    ],
+  },
+  {
+    number: '05',
+    title: 'Non-Steroidal Compound',
+    subtitle: '1 API · GMP · Misclassified',
+    intro: 'Grouped commercially alongside anabolic steroids, but structurally and pharmacologically unrelated — included here for catalogue completeness, not chemical kinship.',
+    accent: 'amber',
+    items: [
+      { name: 'Clenbuterol HCl', body: 'A Beta-2 adrenergic agonist — a pharmaceutical sympathomimetic stimulant used to open airways in asthmatics and accelerate fat loss via thermogenesis. Possesses zero hormonal steroid structure.' },
+    ],
+  },
 ]
 
 export default function AnabolicSteroidsSection() {
-  const [open, setOpen] = useState<number | null>(null)
+  const [openFamily, setOpenFamily] = useState<number | null>(0)
+  const [openItem, setOpenItem] = useState<string | null>(null)
 
   return (
     <>
@@ -90,7 +148,7 @@ export default function AnabolicSteroidsSection() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
               {[
                 { val: '40%', label: 'Men over 45 with low testosterone (est.)' },
-                { val: '9', label: 'Testosterone ester variants in Polysacc portfolio' },
+                { val: '5', label: 'Hormone families in Polysacc\'s anabolic portfolio' },
                 { val: '10–14 wk', label: 'Dosing interval with undecanoate (Nebido® protocol)' },
               ].map((s) => (
                 <div key={s.val} style={{ borderTop: '0.5px solid rgba(138,171,138,0.4)', paddingTop: '1rem' }}>
@@ -123,6 +181,7 @@ export default function AnabolicSteroidsSection() {
       </div>
     </section>
 
+    {/* Categorised steroid families */}
     <section
       id="anabolic-steroids"
       style={{
@@ -133,7 +192,7 @@ export default function AnabolicSteroidsSection() {
       className="section-pad"
     >
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-        <div style={{ marginBottom: '2.5rem' }}>
+        <div style={{ marginBottom: '1rem' }}>
           <p className="section-tag" style={{ marginBottom: '0.75rem' }}>Basket 04 — Anabolic Steroids</p>
           <h2
             style={{
@@ -142,70 +201,244 @@ export default function AnabolicSteroidsSection() {
               fontWeight: 300,
               color: 'var(--charcoal)',
               lineHeight: 1.2,
+              marginBottom: '1.25rem',
             }}
           >
             Anabolic{' '}
             <span style={{ color: 'var(--sage)', fontStyle: 'italic' }}>Steroids</span>
           </h2>
+          <p
+            style={{
+              fontFamily: 'var(--font-dm-sans)',
+              fontSize: '0.95rem',
+              fontWeight: 300,
+              color: 'var(--muted)',
+              lineHeight: 1.8,
+              maxWidth: 680,
+            }}
+          >
+            Anabolic-androgenic steroids are classified by the parent hormone they derive
+            from — testosterone, DHT, or nandrolone — plus the non-steroidal compounds
+            commercially grouped alongside them. Eighteen APIs across five distinct families.
+          </p>
         </div>
 
-        <div
-          style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}
-          className="responsive-split"
-        >
-          {/* A. Male */}
-          <div style={{ border: '0.5px solid rgba(138,171,138,0.3)', overflow: 'hidden' }}>
-            <div style={{ background: 'var(--sage-deep)', padding: '0.85rem 1.25rem' }}>
-              <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '0.72rem', fontWeight: 600, color: '#fff', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                A. Male
-              </span>
-            </div>
-            {ANABOLIC_STEROIDS_MALE.map((name, i) => (
-              <div
-                key={name}
-                style={{
-                  padding: '0.85rem 1.25rem',
-                  borderTop: '0.5px solid rgba(138,171,138,0.2)',
-                  background: i % 2 === 0 ? '#fff' : 'var(--sage-pale)',
-                  fontFamily: 'var(--font-dm-sans)',
-                  fontSize: '0.88rem',
-                  fontWeight: 300,
-                  color: 'var(--charcoal)',
-                }}
-              >
-                {name}
-              </div>
-            ))}
-          </div>
+        {/* Family accordions */}
+        <div style={{ marginTop: '3rem', display: 'flex', flexDirection: 'column', gap: 0 }}>
+          {STEROID_FAMILIES.map((family, fi) => {
+            const isOpen = openFamily === fi
+            const accentColor = family.accent === 'sage' ? 'var(--sage-deep)' : 'var(--amber)'
+            const accentBg = family.accent === 'sage' ? 'rgba(138,171,138,0.08)' : 'rgba(176,125,58,0.06)'
+            const accentBorder = family.accent === 'sage' ? 'rgba(138,171,138,0.35)' : 'rgba(176,125,58,0.3)'
 
-          {/* B. Female */}
-          <div style={{ border: '0.5px solid rgba(176,125,58,0.3)', overflow: 'hidden' }}>
-            <div style={{ background: 'rgba(176,125,58,0.1)', padding: '0.85rem 1.25rem', borderBottom: '0.5px solid rgba(176,125,58,0.25)' }}>
-              <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '0.72rem', fontWeight: 600, color: 'var(--amber)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                B. Female
-              </span>
-            </div>
-            {ANABOLIC_STEROIDS_FEMALE.map((name, i) => (
+            return (
               <div
-                key={name}
+                key={family.title}
                 style={{
-                  padding: '0.85rem 1.25rem',
-                  borderTop: '0.5px solid rgba(176,125,58,0.15)',
-                  background: i % 2 === 0 ? '#fff' : 'rgba(176,125,58,0.04)',
-                  fontFamily: 'var(--font-dm-sans)',
-                  fontSize: '0.88rem',
-                  fontWeight: 300,
-                  color: 'var(--charcoal)',
+                  borderTop: '0.5px solid rgba(91,99,94,0.18)',
+                  borderBottom: fi === STEROID_FAMILIES.length - 1 ? '0.5px solid rgba(91,99,94,0.18)' : 'none',
                 }}
               >
-                {name}
+                <button
+                  onClick={() => setOpenFamily(isOpen ? null : fi)}
+                  style={{
+                    width: '100%',
+                    background: isOpen ? accentBg : 'none',
+                    border: 'none',
+                    padding: '1.75rem 0',
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '1.75rem',
+                    cursor: 'pointer',
+                    textAlign: 'left',
+                    transition: 'background 0.25s',
+                  }}
+                  className="mobile-card-pad"
+                >
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-jetbrains)',
+                      fontSize: '0.7rem',
+                      color: accentColor,
+                      letterSpacing: '0.1em',
+                      paddingTop: '0.4rem',
+                      flexShrink: 0,
+                      width: 28,
+                    }}
+                  >
+                    {family.number}
+                  </span>
+
+                  <div style={{ flex: 1 }}>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'baseline',
+                        gap: '0.9rem',
+                        flexWrap: 'wrap',
+                        marginBottom: isOpen ? '0.75rem' : 0,
+                      }}
+                    >
+                      <h3
+                        style={{
+                          fontFamily: 'var(--font-cormorant)',
+                          fontSize: 'clamp(1.2rem, 2vw, 1.55rem)',
+                          fontWeight: 300,
+                          fontStyle: 'italic',
+                          color: 'var(--charcoal)',
+                          margin: 0,
+                          lineHeight: 1.3,
+                        }}
+                      >
+                        {family.title}
+                      </h3>
+                      <span
+                        style={{
+                          fontFamily: 'var(--font-dm-sans)',
+                          fontSize: '0.68rem',
+                          fontWeight: 500,
+                          color: accentColor,
+                          letterSpacing: '0.08em',
+                          textTransform: 'uppercase',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        {family.subtitle}
+                      </span>
+                    </div>
+
+                    {isOpen && (
+                      <p
+                        style={{
+                          fontFamily: 'var(--font-dm-sans)',
+                          fontSize: '0.88rem',
+                          fontWeight: 300,
+                          color: 'var(--muted)',
+                          lineHeight: 1.8,
+                          margin: '0 0 1.75rem',
+                          maxWidth: 760,
+                        }}
+                      >
+                        {family.intro}
+                      </p>
+                    )}
+                  </div>
+
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-dm-sans)',
+                      fontSize: '1.1rem',
+                      color: accentColor,
+                      transform: isOpen ? 'rotate(45deg)' : 'none',
+                      transition: 'transform 0.25s',
+                      flexShrink: 0,
+                      lineHeight: 1,
+                      paddingTop: '0.2rem',
+                    }}
+                  >
+                    +
+                  </span>
+                </button>
+
+                {isOpen && (
+                  <div
+                    style={{
+                      paddingLeft: 'calc(28px + 1.75rem)',
+                      paddingBottom: '2.25rem',
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(2, 1fr)',
+                      gap: '0.75rem',
+                    }}
+                    className="responsive-split mobile-card-pad"
+                  >
+                    {family.items.map((item) => {
+                      const itemKey = `${family.title}-${item.name}`
+                      const itemOpen = openItem === itemKey
+                      return (
+                        <div
+                          key={itemKey}
+                          onClick={() => setOpenItem(itemOpen ? null : itemKey)}
+                          style={{
+                            border: `0.5px solid ${accentBorder}`,
+                            background: itemOpen ? accentBg : '#fff',
+                            padding: '1rem 1.25rem',
+                            cursor: 'pointer',
+                            transition: 'background 0.2s',
+                          }}
+                        >
+                          <div
+                            style={{
+                              display: 'flex',
+                              justifyContent: 'space-between',
+                              alignItems: 'baseline',
+                              gap: '0.75rem',
+                            }}
+                          >
+                            <p
+                              style={{
+                                fontFamily: 'var(--font-dm-sans)',
+                                fontSize: '0.88rem',
+                                fontWeight: 500,
+                                color: 'var(--charcoal)',
+                                margin: 0,
+                              }}
+                            >
+                              {item.name}
+                            </p>
+                            <span
+                              style={{
+                                fontFamily: 'var(--font-dm-sans)',
+                                fontSize: '0.95rem',
+                                color: accentColor,
+                                transform: itemOpen ? 'rotate(45deg)' : 'none',
+                                transition: 'transform 0.2s',
+                                flexShrink: 0,
+                              }}
+                            >
+                              +
+                            </span>
+                          </div>
+                          {item.alias && (
+                            <p
+                              style={{
+                                fontFamily: 'var(--font-dm-sans)',
+                                fontSize: '0.7rem',
+                                fontWeight: 400,
+                                color: accentColor,
+                                letterSpacing: '0.04em',
+                                margin: '0.25rem 0 0',
+                                fontStyle: 'italic',
+                              }}
+                            >
+                              {item.alias}
+                            </p>
+                          )}
+                          {itemOpen && (
+                            <p
+                              style={{
+                                fontFamily: 'var(--font-dm-sans)',
+                                fontSize: '0.8rem',
+                                fontWeight: 300,
+                                color: 'var(--muted)',
+                                lineHeight: 1.7,
+                                margin: '0.75rem 0 0',
+                              }}
+                            >
+                              {item.body}
+                            </p>
+                          )}
+                        </div>
+                      )
+                    })}
+                  </div>
+                )}
               </div>
-            ))}
-          </div>
+            )
+          })}
         </div>
 
         {/* Market intelligence accordion */}
-        <div style={{ marginTop: '3.5rem' }}>
+        <div style={{ marginTop: '4.5rem' }}>
           <p
             style={{
               fontFamily: 'var(--font-dm-sans)',
@@ -224,65 +457,35 @@ export default function AnabolicSteroidsSection() {
               <div
                 key={i}
                 style={{
+                  padding: '1.5rem 0',
                   borderTop: '0.5px solid rgba(138,171,138,0.3)',
                   borderBottom: i === ANABOLIC_ACCORDIONS.length - 1 ? '0.5px solid rgba(138,171,138,0.3)' : 'none',
                 }}
               >
-                <button
-                  onClick={() => setOpen(open === i ? null : i)}
+                <p
                   style={{
-                    width: '100%',
-                    background: 'none',
-                    border: 'none',
-                    padding: '1.1rem 0',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    cursor: 'pointer',
-                    gap: '1rem',
+                    fontFamily: 'var(--font-dm-sans)',
+                    fontSize: '0.88rem',
+                    fontWeight: 500,
+                    color: 'var(--charcoal)',
+                    margin: '0 0 0.75rem',
                   }}
                 >
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-dm-sans)',
-                      fontSize: '0.88rem',
-                      fontWeight: open === i ? 500 : 300,
-                      color: open === i ? 'var(--charcoal)' : 'var(--muted)',
-                      textAlign: 'left',
-                      transition: 'all 0.2s',
-                    }}
-                  >
-                    {acc.title}
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-dm-sans)',
-                      fontSize: '1rem',
-                      color: 'var(--sage)',
-                      transform: open === i ? 'rotate(45deg)' : 'none',
-                      transition: 'transform 0.2s',
-                      flexShrink: 0,
-                    }}
-                  >
-                    +
-                  </span>
-                </button>
-                {open === i && (
-                  <div style={{ paddingBottom: '1.25rem' }}>
-                    <p
-                      style={{
-                        fontFamily: 'var(--font-dm-sans)',
-                        fontSize: '0.83rem',
-                        fontWeight: 300,
-                        color: 'var(--muted)',
-                        lineHeight: 1.8,
-                        margin: 0,
-                      }}
-                    >
-                      {acc.body}
-                    </p>
-                  </div>
-                )}
+                  {acc.title}
+                </p>
+                <p
+                  style={{
+                    fontFamily: 'var(--font-dm-sans)',
+                    fontSize: '0.83rem',
+                    fontWeight: 300,
+                    color: 'var(--muted)',
+                    lineHeight: 1.8,
+                    margin: 0,
+                    maxWidth: 880,
+                  }}
+                >
+                  {acc.body}
+                </p>
               </div>
             ))}
           </div>

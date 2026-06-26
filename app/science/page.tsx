@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import MolecularPattern from '@/components/MolecularPattern'
+import ComplexitySimplifiedSection from '@/components/ComplexitySimplifiedSection'
 import { CLINICAL_STUDIES } from '@/lib/data'
 
 export const metadata: Metadata = {
@@ -64,6 +65,8 @@ export default function SciencePage() {
           </p>
         </div>
       </section>
+
+      <ComplexitySimplifiedSection />
 
       {/* What is a Polysaccharide */}
       <section
