@@ -10,14 +10,6 @@ const TEAM = [
     linkedin: 'https://www.linkedin.com/in/vishal-jajodia-31a34211/',
   },
   {
-    name: 'Ashwani Shrivastav',
-    role: 'Technical Advisor',
-    bio: 'Technical Advisor at Polysacc and Managing Director at NexGen Pharma Solutions. Over 20 years of expertise in pharmaceutical quality systems and global regulatory compliance, having served as Head of Quality at Ami Lifesciences and general manager at BDR Lifesciences.',
-    initial: 'AS',
-    highlight: false,
-    linkedin: 'https://www.linkedin.com/in/ashwani-shrivastav-b639a1242/',
-  },
-  {
     name: 'Rajender Rao Juvvadi',
     role: 'Strategic Advisor',
     bio: 'Founder of Aurore Life Sciences and Chairman of GeneSys Biologics. Former MD & CEO of Solara Active Pharma Sciences with over 30 years of leadership in API development, CDMO operations, and global biopharma scale-up.',
@@ -91,11 +83,13 @@ export default function TeamSection() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridTemplateColumns: 'repeat(2, 1fr)',
             gap: '1.5rem',
             marginBottom: '4rem',
+            maxWidth: '840px',
+            margin: '0 auto',
           }}
-          className="responsive-three"
+          className="responsive-split"
         >
           {TEAM.map((member) => (
             <div
