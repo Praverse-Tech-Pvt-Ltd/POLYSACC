@@ -72,6 +72,26 @@
 /* Products page nav inner padding */
 .cat-nav-inner {
   padding: 0 6rem;
+  flex-wrap: wrap;
+  row-gap: 0.6rem;
+}
+
+.cat-nav-current {
+  order: 3;
+  flex: 1 1 100%;
+  text-align: left !important;
+}
+
+.cat-nav-prevnext-label {
+  display: inline;
+}
+
+@media (min-width: 769px) {
+  .cat-nav-current {
+    order: 0;
+    flex: 1 1 auto;
+    text-align: center !important;
+  }
 }
 
 /* Men's health 3-col row */
@@ -92,7 +112,11 @@
 
 @media (max-width: 768px) {
   .cat-nav-inner {
-    padding: 0 1.25rem !important;
+    padding: 0.75rem 1.25rem !important;
+  }
+
+  .cat-nav-prevnext {
+    gap: 1rem !important;
   }
 
   .inner-pad {
@@ -201,6 +225,58 @@
 
   .mobile-nav-link {
     font-size: 2rem;
+  }
+
+  .cat-nav-back-label,
+  .cat-nav-prevnext-label {
+    display: none;
+  }
+
+  .cat-nav-back {
+    border: 0.5px solid rgba(138, 171, 138, 0.4);
+    border-radius: 999px;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    justify-content: center;
+    padding: 0 !important;
+    gap: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .cat-nav-prevnext {
+    border: 0.5px solid rgba(138, 171, 138, 0.4);
+    border-radius: 999px;
+    height: 28px;
+    padding: 0 !important;
+    gap: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .cat-nav-prev,
+  .cat-nav-next {
+    max-width: none !important;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.65rem !important;
+    gap: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .cat-nav-prev {
+    border-right: 0.5px solid rgba(138, 171, 138, 0.3);
+  }
+
+  .cat-nav-current {
+    margin-top: 0.35rem;
+  }
+
+  .cat-nav-arrow-icon,
+  .cat-nav-back-icon {
+    font-size: 0.9rem;
+    line-height: 1;
   }
 }
 

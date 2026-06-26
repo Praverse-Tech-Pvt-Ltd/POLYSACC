@@ -3,9 +3,20 @@ import { COMPANY } from '@/lib/data'
 
 const companyLinks = [
   { label: 'About',     href: '/about' },
+  { label: 'Team',      href: '/team' },
   { label: 'Science',   href: '/science' },
-  { label: 'Product Portfolio', href: '/product-portfolio' },
   { label: 'Contact',   href: '/contact' },
+]
+
+const productLinks = [
+  { label: 'Polysaccharide Speciality',      href: '/products/polysaccharide-pentosan' },
+  { label: "Men's Health Urology",           href: '/products/mens-health' },
+  { label: "Women's Health",                 href: '/products/womens-health' },
+  { label: 'Anabolic Steroids',              href: '/products/anabolic-steroids' },
+  { label: 'High Purity Dexamethasone',      href: '/products/dexamethasone' },
+  { label: 'Uro-Gyn Bladder Biochip',        href: '/products/biochip' },
+  { label: 'US FDA 505(b)(2) Ideas',         href: '/products/fda-505b2' },
+  { label: 'View Full Portfolio ↗',          href: '/product-portfolio' },
 ]
 
 const colHeading: React.CSSProperties = {
@@ -96,24 +107,11 @@ export default function Footer() {
         {/* Column 3 — Products */}
         <div>
           <p style={colHeading}>Products &amp; Initiatives</p>
-          {/*
-          <a
-            href="https://elmiron.in"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="footer-link-sage"
-          >
-            Elmiron® ↗
-          </a>
-          <a
-            href="https://missedbladderdisease.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="footer-link-sage"
-          >
-            Missed Bladder Disease ↗
-          </a>
-          */}
+          {productLinks.map((l) => (
+            <Link key={l.href} href={l.href} className="footer-link">
+              {l.label}
+            </Link>
+          ))}
         </div>
 
         {/* Column 4 — Contact */}

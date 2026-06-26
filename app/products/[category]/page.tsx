@@ -71,16 +71,18 @@ export default function CategoryPage({ params }: { params: { category: string } 
             maxWidth: '1280px',
             margin: '0 auto',
             padding: '0 6rem',
-            height: 48,
+            minHeight: 48,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
+            gap: '1rem',
           }}
           className="cat-nav-inner"
         >
           {/* Back */}
           <Link
             href="/products#therapeutic-portfolio"
+            className="cat-nav-back"
             style={{
               fontFamily: 'var(--font-dm-sans)',
               fontSize: '0.75rem',
@@ -92,13 +94,15 @@ export default function CategoryPage({ params }: { params: { category: string } 
               alignItems: 'center',
               gap: '0.4rem',
               transition: 'color 0.2s',
+              flexShrink: 0,
             }}
           >
-            ← Products
+            <span className="cat-nav-back-icon">←</span> <span className="cat-nav-back-label">Products</span>
           </Link>
 
           {/* Current label */}
           <span
+            className="cat-nav-current"
             style={{
               fontFamily: 'var(--font-dm-sans)',
               fontSize: '0.72rem',
@@ -106,16 +110,24 @@ export default function CategoryPage({ params }: { params: { category: string } 
               color: 'var(--sage-deep)',
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              flex: '1 1 auto',
+              textAlign: 'center',
+              minWidth: 0,
             }}
           >
             {entry.label}
           </span>
 
           {/* Prev / Next */}
-          <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+          <div className="cat-nav-prevnext" style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', flexShrink: 0 }}>
             {prevId ? (
               <Link
                 href={`/products/${prevId}`}
+                className="cat-nav-prev"
+                aria-label={`Previous: ${prevLabel}`}
                 style={{
                   fontFamily: 'var(--font-dm-sans)',
                   fontSize: '0.72rem',
@@ -128,15 +140,20 @@ export default function CategoryPage({ params }: { params: { category: string } 
                   maxWidth: 140,
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
                 }}
                 title={prevLabel ?? ''}
               >
-                ← {prevLabel}
+                <span className="cat-nav-arrow-icon">‹</span> <span className="cat-nav-prevnext-label">{prevLabel}</span>
               </Link>
-            ) : <span />}
+            ) : <span className="cat-nav-prevnext-spacer" />}
             {nextId && (
               <Link
                 href={`/products/${nextId}`}
+                className="cat-nav-next"
+                aria-label={`Next: ${nextLabel}`}
                 style={{
                   fontFamily: 'var(--font-dm-sans)',
                   fontSize: '0.72rem',
@@ -149,10 +166,13 @@ export default function CategoryPage({ params }: { params: { category: string } 
                   maxWidth: 140,
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
                 }}
                 title={nextLabel ?? ''}
               >
-                {nextLabel} →
+                <span className="cat-nav-prevnext-label">{nextLabel}</span> <span className="cat-nav-arrow-icon">›</span>
               </Link>
             )}
           </div>

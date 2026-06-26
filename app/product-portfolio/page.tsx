@@ -314,11 +314,20 @@ export default function ProductPortfolioPage() {
         @media (max-width: 580px) {
           .product-portfolio-grid { grid-template-columns: 1fr; }
         }
+        .product-portfolio-hero {
+          padding: 8rem 5rem 6rem;
+        }
+        @media (max-width: 900px) {
+          .product-portfolio-hero { padding: 7.5rem 2.5rem 4.5rem; }
+        }
+        @media (max-width: 580px) {
+          .product-portfolio-hero { padding: 7rem 1.25rem 3.5rem; }
+        }
       `}</style>
 
       <section
-        className="product-portfolio-bg"
-        style={{ minHeight: '100vh', padding: '8rem 5rem 6rem' }}
+        className="product-portfolio-bg product-portfolio-hero"
+        style={{ minHeight: '100vh' }}
       >
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
 
