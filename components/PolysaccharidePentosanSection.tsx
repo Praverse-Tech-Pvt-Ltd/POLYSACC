@@ -14,196 +14,6 @@ const PPS_INDICATIONS = [
 export default function PolysaccharidePentosanSection() {
   return (
     <>
-      {/* Heparanase Section — shown first */}
-      <section
-        style={{
-          background: 'var(--sage-pale)',
-          padding: '7rem 6rem',
-          borderBottom: '0.5px solid rgba(138,171,138,0.22)',
-        }}
-        className="section-pad"
-      >
-        <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1.2fr 1fr',
-              gap: '6rem',
-              alignItems: 'center',
-            }}
-            className="responsive-split"
-          >
-            {/* Left Column: Copy */}
-            <div>
-              <p className="section-tag" style={{ marginBottom: '1.25rem' }}>
-                Target Biology
-              </p>
-              <h2
-                style={{
-                  fontFamily: 'var(--font-cormorant)',
-                  fontSize: 'clamp(2rem, 3.5vw, 2.75rem)',
-                  fontWeight: 300,
-                  color: 'var(--charcoal)',
-                  lineHeight: 1.2,
-                  marginBottom: '1.5rem',
-                }}
-              >
-                Heparanase
-              </h2>
-              <p
-                style={{
-                  fontFamily: 'var(--font-dm-sans)',
-                  fontSize: '0.9rem',
-                  fontWeight: 300,
-                  color: 'var(--muted)',
-                  lineHeight: 1.9,
-                  marginBottom: '1.5rem',
-                }}
-              >
-                Heparanase is the only mammalian endo-glucuronidase capable of cleaving heparan sulfate side chains of proteoglycans in the extracellular matrix (ECM). It is an essential enzyme involved in tissue remodeling, cell migration, and regulating the structure of the cell surface and basement membrane.
-              </p>
-              <p
-                style={{
-                  fontFamily: 'var(--font-dm-sans)',
-                  fontSize: '0.9rem',
-                  fontWeight: 300,
-                  color: 'var(--muted)',
-                  lineHeight: 1.9,
-                  marginBottom: '1.5rem',
-                }}
-              >
-                Upregulation of heparanase leads to the degradation of the protective endothelial glycocalyx and mucosal linings. This breakdown disrupts the barrier integrity of tissues and blood vessels, promoting inflammatory cell infiltration and driving pathologies in chronic inflammatory diseases and vascular disorders.
-              </p>
-
-              <div
-                style={{
-                  display: 'flex',
-                  gap: '1rem',
-                  marginTop: '2rem',
-                }}
-                className="responsive-split mobile-gap"
-              >
-                <div
-                  style={{
-                    background: 'rgba(248,246,241,0.65)',
-                    border: '0.5px solid rgba(138,171,138,0.25)',
-                    padding: '1.25rem',
-                    flex: 1,
-                  }}
-                >
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-jetbrains)',
-                      fontSize: '0.65rem',
-                      fontWeight: 600,
-                      color: 'var(--sage-deep)',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.08em',
-                      margin: '0 0 0.5rem',
-                    }}
-                  >
-                    Enzymatic Activity
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-dm-sans)',
-                      fontSize: '0.78rem',
-                      fontWeight: 300,
-                      color: 'var(--charcoal)',
-                      margin: 0,
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    Cleaves heparan sulfate side chains of proteoglycans, leading to disassembly of the extracellular matrix and release of matrix-bound active molecules.
-                  </p>
-                </div>
-                <div
-                  style={{
-                    background: 'rgba(176,125,58,0.04)',
-                    border: '0.5px solid rgba(176,125,58,0.25)',
-                    padding: '1.25rem',
-                    flex: 1,
-                  }}
-                >
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-jetbrains)',
-                      fontSize: '0.65rem',
-                      fontWeight: 600,
-                      color: 'var(--amber)',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.08em',
-                      margin: '0 0 0.5rem',
-                    }}
-                  >
-                    Pathological Role
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-dm-sans)',
-                      fontSize: '0.78rem',
-                      fontWeight: 300,
-                      color: 'var(--charcoal)',
-                      margin: 0,
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    Degrades the endothelial glycocalyx and mucosal linings. Uncontrolled activity impairs organ barrier function and propagates inflammatory responses.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column: Image */}
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <div
-                style={{
-                  background: 'transparent',
-                  border: '0.5px solid rgba(138,171,138,0.25)',
-                  padding: '2.5rem 1.5rem',
-                  boxShadow: '0 12px 36px rgba(44,44,42,0.06)',
-                  width: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: '2px',
-                }}
-              >
-                <img
-                  src="/heparanase-structure.png"
-                  alt="Chemical Structure associated with Heparanase"
-                  style={{
-                    maxWidth: '100%',
-                    height: 'auto',
-                    display: 'block',
-                  }}
-                />
-              </div>
-              <p
-                style={{
-                  fontFamily: 'var(--font-jetbrains)',
-                  fontSize: '0.58rem',
-                  color: 'var(--muted)',
-                  marginTop: '1rem',
-                  textAlign: 'center',
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                }}
-              >
-                Structure: Cholestanol-conjugated sulfated oligosaccharide
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Basket narrative */}
       <section
         style={{
@@ -305,7 +115,28 @@ export default function PolysaccharidePentosanSection() {
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '10rem', alignItems: 'start' }} className="responsive-split">
             <div>
-              <p className="section-tag" style={{ marginBottom: '1.25rem' }}>Basket Product</p>
+              <p className="section-tag" style={{ marginBottom: '1.25rem' }}>Basket Products</p>
+
+              {/* Heparanase card — first */}
+              <div
+                style={{
+                  background: 'var(--sage-pale)',
+                  padding: '2rem',
+                  border: '0.5px solid rgba(138,171,138,0.35)',
+                  borderLeft: '3px solid var(--sage)',
+                  marginBottom: '1.25rem',
+                }}
+              >
+                <p style={{ fontFamily: 'var(--font-jetbrains)', fontSize: '0.6rem', color: 'var(--sage-deep)', letterSpacing: '0.1em', margin: '0 0 0.75rem' }}>Target Biology</p>
+                <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.5rem', fontWeight: 300, color: 'var(--charcoal)', margin: '0 0 0.5rem', lineHeight: 1.2 }}>
+                  Heparanase
+                </p>
+                <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '0.75rem', fontWeight: 300, color: 'var(--muted)', margin: 0, lineHeight: 1.6 }}>
+                  Endo-glucuronidase · ECM remodelling · Heparan sulfate cleavage
+                </p>
+              </div>
+
+              {/* PPS card — second */}
               <div
                 style={{
                   background: 'var(--sage-pale)',
@@ -360,6 +191,159 @@ export default function PolysaccharidePentosanSection() {
         </div>
       </section>
 
+      {/* Heparanase Target Biology detail */}
+      <section
+        style={{
+          background: 'var(--sage-pale)',
+          padding: '7rem 6rem',
+          borderBottom: '0.5px solid rgba(138,171,138,0.22)',
+        }}
+        className="section-pad"
+      >
+        <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1.2fr 1fr',
+              gap: '6rem',
+              alignItems: 'center',
+            }}
+            className="responsive-split"
+          >
+            <div>
+              <p className="section-tag" style={{ marginBottom: '1.25rem' }}>
+                Target Biology
+              </p>
+              <h2
+                style={{
+                  fontFamily: 'var(--font-cormorant)',
+                  fontSize: 'clamp(2rem, 3.5vw, 2.75rem)',
+                  fontWeight: 300,
+                  color: 'var(--charcoal)',
+                  lineHeight: 1.2,
+                  marginBottom: '1.5rem',
+                }}
+              >
+                Heparanase
+              </h2>
+              <p
+                style={{
+                  fontFamily: 'var(--font-dm-sans)',
+                  fontSize: '0.9rem',
+                  fontWeight: 300,
+                  color: 'var(--muted)',
+                  lineHeight: 1.9,
+                  marginBottom: '1.5rem',
+                }}
+              >
+                Heparanase is the only mammalian endo-glucuronidase capable of cleaving heparan sulfate side chains of proteoglycans in the extracellular matrix (ECM). It is an essential enzyme involved in tissue remodeling, cell migration, and regulating the structure of the cell surface and basement membrane.
+              </p>
+              <p
+                style={{
+                  fontFamily: 'var(--font-dm-sans)',
+                  fontSize: '0.9rem',
+                  fontWeight: 300,
+                  color: 'var(--muted)',
+                  lineHeight: 1.9,
+                  marginBottom: '1.5rem',
+                }}
+              >
+                Upregulation of heparanase leads to the degradation of the protective endothelial glycocalyx and mucosal linings. This breakdown disrupts the barrier integrity of tissues and blood vessels, promoting inflammatory cell infiltration and driving pathologies in chronic inflammatory diseases and vascular disorders.
+              </p>
+              <div
+                style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}
+                className="responsive-split mobile-gap"
+              >
+                <div
+                  style={{
+                    background: 'rgba(248,246,241,0.65)',
+                    border: '0.5px solid rgba(138,171,138,0.25)',
+                    padding: '1.25rem',
+                    flex: 1,
+                  }}
+                >
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-jetbrains)',
+                      fontSize: '0.65rem',
+                      fontWeight: 600,
+                      color: 'var(--sage-deep)',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.08em',
+                      margin: '0 0 0.5rem',
+                    }}
+                  >
+                    Enzymatic Activity
+                  </p>
+                  <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '0.78rem', fontWeight: 300, color: 'var(--charcoal)', margin: 0, lineHeight: 1.6 }}>
+                    Cleaves heparan sulfate side chains of proteoglycans, leading to disassembly of the extracellular matrix and release of matrix-bound active molecules.
+                  </p>
+                </div>
+                <div
+                  style={{
+                    background: 'rgba(176,125,58,0.04)',
+                    border: '0.5px solid rgba(176,125,58,0.25)',
+                    padding: '1.25rem',
+                    flex: 1,
+                  }}
+                >
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-jetbrains)',
+                      fontSize: '0.65rem',
+                      fontWeight: 600,
+                      color: 'var(--amber)',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.08em',
+                      margin: '0 0 0.5rem',
+                    }}
+                  >
+                    Pathological Role
+                  </p>
+                  <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '0.78rem', fontWeight: 300, color: 'var(--charcoal)', margin: 0, lineHeight: 1.6 }}>
+                    Degrades the endothelial glycocalyx and mucosal linings. Uncontrolled activity impairs organ barrier function and propagates inflammatory responses.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+              <div
+                style={{
+                  background: 'transparent',
+                  border: '0.5px solid rgba(138,171,138,0.25)',
+                  padding: '2.5rem 1.5rem',
+                  boxShadow: '0 12px 36px rgba(44,44,42,0.06)',
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: '2px',
+                }}
+              >
+                <img
+                  src="/heparanase-structure.png"
+                  alt="Chemical Structure associated with Heparanase"
+                  style={{ maxWidth: '100%', height: 'auto', display: 'block' }}
+                />
+              </div>
+              <p
+                style={{
+                  fontFamily: 'var(--font-jetbrains)',
+                  fontSize: '0.58rem',
+                  color: 'var(--muted)',
+                  marginTop: '1rem',
+                  textAlign: 'center',
+                  letterSpacing: '0.04em',
+                  textTransform: 'uppercase',
+                }}
+              >
+                Structure: Cholestanol-conjugated sulfated oligosaccharide
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   )
 }
