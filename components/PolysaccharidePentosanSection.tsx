@@ -344,6 +344,159 @@ export default function PolysaccharidePentosanSection() {
           </div>
         </div>
       </section>
+      {/* PPS Target Biology detail */}
+      <section
+        style={{
+          background: 'var(--cream)',
+          padding: '7rem 6rem',
+          borderBottom: '0.5px solid rgba(138,171,138,0.22)',
+        }}
+        className="section-pad"
+      >
+        <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1.2fr 1fr',
+              gap: '6rem',
+              alignItems: 'center',
+            }}
+            className="responsive-split"
+          >
+            <div>
+              <p className="section-tag" style={{ marginBottom: '1.25rem' }}>
+                Target Biology
+              </p>
+              <h2
+                style={{
+                  fontFamily: 'var(--font-cormorant)',
+                  fontSize: 'clamp(2rem, 3.5vw, 2.75rem)',
+                  fontWeight: 300,
+                  color: 'var(--charcoal)',
+                  lineHeight: 1.2,
+                  marginBottom: '1.5rem',
+                }}
+              >
+                Pentosan Polysulfate Sodium
+              </h2>
+              <p
+                style={{
+                  fontFamily: 'var(--font-dm-sans)',
+                  fontSize: '0.9rem',
+                  fontWeight: 300,
+                  color: 'var(--muted)',
+                  lineHeight: 1.9,
+                  marginBottom: '1.5rem',
+                }}
+              >
+                Pentosan Polysulfate Sodium (PPS) is a semi-synthetic sulphated xylan — a heparin-like polysaccharide derived from beechwood hemicellulose. Its backbone consists of repeating β-1,4-linked xylose units with 4-O-methyl-glucuronic acid branches, carrying sulphate groups at the 2- and 3-positions that confer its biological activity.
+              </p>
+              <p
+                style={{
+                  fontFamily: 'var(--font-dm-sans)',
+                  fontSize: '0.9rem',
+                  fontWeight: 300,
+                  color: 'var(--muted)',
+                  lineHeight: 1.9,
+                  marginBottom: '1.5rem',
+                }}
+              >
+                PPS exerts its therapeutic effect by replenishing and stabilising the glycosaminoglycan (GAG) layer of the bladder urothelium — the mucosal defence barrier whose disruption is central to IC/BPS pathophysiology. Its heparin-like sulphation also underpins activity in osteoarthritis, hyperlipidaemia, and diabetic nephropathy.
+              </p>
+              <div
+                style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}
+                className="responsive-split mobile-gap"
+              >
+                <div
+                  style={{
+                    background: 'rgba(248,246,241,0.65)',
+                    border: '0.5px solid rgba(138,171,138,0.25)',
+                    padding: '1.25rem',
+                    flex: 1,
+                  }}
+                >
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-jetbrains)',
+                      fontSize: '0.65rem',
+                      fontWeight: 600,
+                      color: 'var(--sage-deep)',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.08em',
+                      margin: '0 0 0.5rem',
+                    }}
+                  >
+                    Mechanism of Action
+                  </p>
+                  <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '0.78rem', fontWeight: 300, color: 'var(--charcoal)', margin: 0, lineHeight: 1.6 }}>
+                    Adheres to the urothelial surface, restoring the GAG protective layer and preventing irritants from contacting the bladder wall.
+                  </p>
+                </div>
+                <div
+                  style={{
+                    background: 'rgba(176,125,58,0.04)',
+                    border: '0.5px solid rgba(176,125,58,0.25)',
+                    padding: '1.25rem',
+                    flex: 1,
+                  }}
+                >
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-jetbrains)',
+                      fontSize: '0.65rem',
+                      fontWeight: 600,
+                      color: 'var(--amber)',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.08em',
+                      margin: '0 0 0.5rem',
+                    }}
+                  >
+                    Structural Basis
+                  </p>
+                  <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '0.78rem', fontWeight: 300, color: 'var(--charcoal)', margin: 0, lineHeight: 1.6 }}>
+                    β-1,4-xylan backbone with MGA branches; sulphate groups at C-2 and C-3 mimic heparan sulphate and confer GAG-layer affinity.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+              <div
+                style={{
+                  background: 'white',
+                  border: '0.5px solid rgba(138,171,138,0.25)',
+                  padding: '2.5rem 1.5rem',
+                  boxShadow: '0 12px 36px rgba(44,44,42,0.06)',
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: '2px',
+                }}
+              >
+                <img
+                  src="/pps-structure.png"
+                  alt="Chemical structure of Pentosan Polysulfate Sodium"
+                  style={{ maxWidth: '100%', height: 'auto', display: 'block' }}
+                />
+              </div>
+              <p
+                style={{
+                  fontFamily: 'var(--font-jetbrains)',
+                  fontSize: '0.58rem',
+                  color: 'var(--muted)',
+                  marginTop: '1rem',
+                  textAlign: 'center',
+                  letterSpacing: '0.04em',
+                  textTransform: 'uppercase',
+                }}
+              >
+                Structure: Sulphated β-1,4-xylan with 4-O-methyl-glucuronic acid branches
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   )
 }
