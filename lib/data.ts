@@ -10,10 +10,10 @@ export const COMPANY = {
     state: 'Maharashtra, India',
     full: '404 & 405, Floor 4, Sona Chambers, Jagannath Shankarsheth Marg, Kamathiwadi, Chira Bazar, Kalbadevi, Mumbai – 400002',
   },
-  contactPerson: 'Vishal',
+  contactPerson: 'Polysacc',
   contactRole: '',
-  email: 'vishal@polysacc.com',
-  email2: 'ankita@polysacc.com',
+  email: 'info@polysacc.com',
+  email2: 'info@polysacc.com',
   phone: '+91 80972 53466',
 } as const
 
