@@ -1,7 +1,5 @@
 'use client'
 
-import { useState } from 'react'
-
 const ANABOLIC_ACCORDIONS = [
   {
     title: 'The Ester Guide — Duration Determines Dosing Protocol',
@@ -109,9 +107,6 @@ const STEROID_FAMILIES: SteroidFamily[] = [
 ]
 
 export default function AnabolicSteroidsSection() {
-  const [openFamily, setOpenFamily] = useState<number | null>(0)
-  const [openItem, setOpenItem] = useState<string | null>(null)
-
   return (
     <>
     {/* Narrative strip */}
@@ -181,314 +176,79 @@ export default function AnabolicSteroidsSection() {
       </div>
     </section>
 
-    {/* Categorised steroid families */}
+    {/* Steroid families — matrix layout */}
     <section
       id="anabolic-steroids"
       style={{
         background: 'var(--cream)',
-        padding: '6rem 6rem',
+        padding: '6rem 6rem 7rem',
         borderBottom: '0.5px solid rgba(138,171,138,0.25)',
       }}
       className="section-pad"
     >
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-        <div style={{ marginBottom: '1rem' }}>
-          <p className="section-tag" style={{ marginBottom: '0.75rem' }}>Basket 04 — Anabolic Steroids</p>
-          <h2
-            style={{
-              fontFamily: 'var(--font-cormorant)',
-              fontSize: 'clamp(2rem, 3.5vw, 3rem)',
-              fontWeight: 300,
-              color: 'var(--charcoal)',
-              lineHeight: 1.2,
-              marginBottom: '1.25rem',
-            }}
-          >
-            Anabolic{' '}
-            <span style={{ color: 'var(--sage)', fontStyle: 'italic' }}>Steroids</span>
-          </h2>
-          <p
-            style={{
-              fontFamily: 'var(--font-dm-sans)',
-              fontSize: '0.95rem',
-              fontWeight: 300,
-              color: 'var(--muted)',
-              lineHeight: 1.8,
-              maxWidth: 680,
-            }}
-          >
-            Anabolic-androgenic steroids are classified by the parent hormone they derive
-            from — testosterone, DHT, or nandrolone — plus the non-steroidal compounds
-            commercially grouped alongside them. Eighteen APIs across five distinct families.
-          </p>
-        </div>
+        <p className="section-tag" style={{ marginBottom: '0.75rem' }}>Basket 04 — Anabolic Steroids</p>
+        <h2
+          style={{
+            fontFamily: 'var(--font-cormorant)',
+            fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+            fontWeight: 300,
+            color: 'var(--charcoal)',
+            lineHeight: 1.2,
+            marginBottom: '0.75rem',
+          }}
+        >
+          Anabolic <span style={{ color: 'var(--sage)', fontStyle: 'italic' }}>Steroids</span>
+        </h2>
+        <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '0.88rem', fontWeight: 300, color: 'var(--muted)', lineHeight: 1.8, maxWidth: 620, marginBottom: '4rem' }}>
+          18 APIs across five distinct families — classified by parent hormone and ester chemistry.
+        </p>
 
-        {/* Family accordions */}
-        <div style={{ marginTop: '3rem', display: 'flex', flexDirection: 'column', gap: 0 }}>
-          {STEROID_FAMILIES.map((family, fi) => {
-            const isOpen = openFamily === fi
+        {/* Matrix grid — 6 virtual columns, row 1: 3 cards spanning 2 each, row 2: 2 cards offset by 1 (pyramid) */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1.5rem' }}>
+          {STEROID_FAMILIES.map((family, i) => {
             const accentColor = family.accent === 'sage' ? 'var(--sage-deep)' : 'var(--amber)'
-            const accentBg = family.accent === 'sage' ? 'rgba(138,171,138,0.08)' : 'rgba(176,125,58,0.06)'
             const accentBorder = family.accent === 'sage' ? 'rgba(138,171,138,0.35)' : 'rgba(176,125,58,0.3)'
-
+            // Row 1: cols 1-2, 3-4, 5-6 | Row 2 (centered): cols 2-4, 4-6
+            const colSpans = [
+              '1 / 3', '3 / 5', '5 / 7',
+              '2 / 4', '4 / 6',
+            ]
             return (
               <div
                 key={family.title}
                 style={{
-                  borderTop: '0.5px solid rgba(91,99,94,0.18)',
-                  borderBottom: fi === STEROID_FAMILIES.length - 1 ? '0.5px solid rgba(91,99,94,0.18)' : 'none',
+                  gridColumn: colSpans[i],
+                  border: `0.5px solid ${accentBorder}`,
+                  borderTop: `2px solid ${accentColor}`,
+                  background: 'var(--sage-pale)',
+                  padding: '2rem',
                 }}
               >
-                <button
-                  onClick={() => setOpenFamily(isOpen ? null : fi)}
-                  style={{
-                    width: '100%',
-                    background: isOpen ? accentBg : 'none',
-                    border: 'none',
-                    padding: '1.75rem 0',
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: '1.75rem',
-                    cursor: 'pointer',
-                    textAlign: 'left',
-                    transition: 'background 0.25s',
-                  }}
-                  className="mobile-card-pad"
-                >
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-jetbrains)',
-                      fontSize: '0.7rem',
-                      color: accentColor,
-                      letterSpacing: '0.1em',
-                      paddingTop: '0.4rem',
-                      flexShrink: 0,
-                      width: 28,
-                    }}
-                  >
-                    {family.number}
-                  </span>
-
-                  <div style={{ flex: 1 }}>
-                    <div
-                      style={{
-                        display: 'flex',
-                        alignItems: 'baseline',
-                        gap: '0.9rem',
-                        flexWrap: 'wrap',
-                        marginBottom: isOpen ? '0.75rem' : 0,
-                      }}
-                    >
-                      <h3
-                        style={{
-                          fontFamily: 'var(--font-cormorant)',
-                          fontSize: 'clamp(1.2rem, 2vw, 1.55rem)',
-                          fontWeight: 300,
-                          fontStyle: 'italic',
-                          color: 'var(--charcoal)',
-                          margin: 0,
-                          lineHeight: 1.3,
-                        }}
-                      >
-                        {family.title}
-                      </h3>
-                      <span
-                        style={{
-                          fontFamily: 'var(--font-dm-sans)',
-                          fontSize: '0.68rem',
-                          fontWeight: 500,
-                          color: accentColor,
-                          letterSpacing: '0.08em',
-                          textTransform: 'uppercase',
-                          whiteSpace: 'nowrap',
-                        }}
-                      >
-                        {family.subtitle}
+                <p style={{ fontFamily: 'var(--font-jetbrains)', fontSize: '0.58rem', color: accentColor, letterSpacing: '0.1em', margin: '0 0 0.5rem', textTransform: 'uppercase' }}>
+                  {family.number} · {family.subtitle}
+                </p>
+                <h3 style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.25rem', fontWeight: 300, fontStyle: 'italic', color: 'var(--charcoal)', margin: '0 0 1.25rem', lineHeight: 1.3 }}>
+                  {family.title}
+                </h3>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  {family.items.map((item) => (
+                    <li key={item.name} style={{ display: 'flex', alignItems: 'baseline', gap: '0.6rem' }}>
+                      <span style={{ width: 4, height: 4, borderRadius: '50%', background: accentColor, flexShrink: 0, marginTop: 6 }} />
+                      <span style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '0.8rem', fontWeight: 400, color: 'var(--charcoal)', lineHeight: 1.5 }}>
+                        {item.name}
+                        {item.alias && (
+                          <span style={{ fontStyle: 'italic', color: accentColor, fontSize: '0.72rem', marginLeft: '0.4rem' }}>
+                            · {item.alias}
+                          </span>
+                        )}
                       </span>
-                    </div>
-
-                    {isOpen && (
-                      <p
-                        style={{
-                          fontFamily: 'var(--font-dm-sans)',
-                          fontSize: '0.88rem',
-                          fontWeight: 300,
-                          color: 'var(--muted)',
-                          lineHeight: 1.8,
-                          margin: '0 0 1.75rem',
-                          maxWidth: 760,
-                        }}
-                      >
-                        {family.intro}
-                      </p>
-                    )}
-                  </div>
-
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-dm-sans)',
-                      fontSize: '1.1rem',
-                      color: accentColor,
-                      transform: isOpen ? 'rotate(45deg)' : 'none',
-                      transition: 'transform 0.25s',
-                      flexShrink: 0,
-                      lineHeight: 1,
-                      paddingTop: '0.2rem',
-                    }}
-                  >
-                    +
-                  </span>
-                </button>
-
-                {isOpen && (
-                  <div
-                    style={{
-                      paddingLeft: 'calc(28px + 1.75rem)',
-                      paddingBottom: '2.25rem',
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(2, 1fr)',
-                      gap: '0.75rem',
-                    }}
-                    className="responsive-split mobile-card-pad"
-                  >
-                    {family.items.map((item) => {
-                      const itemKey = `${family.title}-${item.name}`
-                      const itemOpen = openItem === itemKey
-                      return (
-                        <div
-                          key={itemKey}
-                          onClick={() => setOpenItem(itemOpen ? null : itemKey)}
-                          style={{
-                            border: `0.5px solid ${accentBorder}`,
-                            background: itemOpen ? accentBg : '#fff',
-                            padding: '1rem 1.25rem',
-                            cursor: 'pointer',
-                            transition: 'background 0.2s',
-                          }}
-                        >
-                          <div
-                            style={{
-                              display: 'flex',
-                              justifyContent: 'space-between',
-                              alignItems: 'baseline',
-                              gap: '0.75rem',
-                            }}
-                          >
-                            <p
-                              style={{
-                                fontFamily: 'var(--font-dm-sans)',
-                                fontSize: '0.88rem',
-                                fontWeight: 500,
-                                color: 'var(--charcoal)',
-                                margin: 0,
-                              }}
-                            >
-                              {item.name}
-                            </p>
-                            <span
-                              style={{
-                                fontFamily: 'var(--font-dm-sans)',
-                                fontSize: '0.95rem',
-                                color: accentColor,
-                                transform: itemOpen ? 'rotate(45deg)' : 'none',
-                                transition: 'transform 0.2s',
-                                flexShrink: 0,
-                              }}
-                            >
-                              +
-                            </span>
-                          </div>
-                          {item.alias && (
-                            <p
-                              style={{
-                                fontFamily: 'var(--font-dm-sans)',
-                                fontSize: '0.7rem',
-                                fontWeight: 400,
-                                color: accentColor,
-                                letterSpacing: '0.04em',
-                                margin: '0.25rem 0 0',
-                                fontStyle: 'italic',
-                              }}
-                            >
-                              {item.alias}
-                            </p>
-                          )}
-                          {itemOpen && (
-                            <p
-                              style={{
-                                fontFamily: 'var(--font-dm-sans)',
-                                fontSize: '0.8rem',
-                                fontWeight: 300,
-                                color: 'var(--muted)',
-                                lineHeight: 1.7,
-                                margin: '0.75rem 0 0',
-                              }}
-                            >
-                              {item.body}
-                            </p>
-                          )}
-                        </div>
-                      )
-                    })}
-                  </div>
-                )}
+                    </li>
+                  ))}
+                </ul>
               </div>
             )
           })}
-        </div>
-
-        {/* Market intelligence accordion */}
-        <div style={{ marginTop: '4.5rem' }}>
-          <p
-            style={{
-              fontFamily: 'var(--font-dm-sans)',
-              fontSize: '0.72rem',
-              fontWeight: 500,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              color: 'var(--muted)',
-              marginBottom: '1rem',
-            }}
-          >
-            Market Intelligence
-          </p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-            {ANABOLIC_ACCORDIONS.map((acc, i) => (
-              <div
-                key={i}
-                style={{
-                  padding: '1.5rem 0',
-                  borderTop: '0.5px solid rgba(138,171,138,0.3)',
-                  borderBottom: i === ANABOLIC_ACCORDIONS.length - 1 ? '0.5px solid rgba(138,171,138,0.3)' : 'none',
-                }}
-              >
-                <p
-                  style={{
-                    fontFamily: 'var(--font-dm-sans)',
-                    fontSize: '0.88rem',
-                    fontWeight: 500,
-                    color: 'var(--charcoal)',
-                    margin: '0 0 0.75rem',
-                  }}
-                >
-                  {acc.title}
-                </p>
-                <p
-                  style={{
-                    fontFamily: 'var(--font-dm-sans)',
-                    fontSize: '0.83rem',
-                    fontWeight: 300,
-                    color: 'var(--muted)',
-                    lineHeight: 1.8,
-                    margin: 0,
-                    maxWidth: 880,
-                  }}
-                >
-                  {acc.body}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
