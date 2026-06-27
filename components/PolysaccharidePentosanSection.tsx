@@ -463,8 +463,8 @@ export default function PolysaccharidePentosanSection() {
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
               <div
                 style={{
-                  background: 'white',
-                  border: '0.5px solid rgba(138,171,138,0.25)',
+                  background: 'transparent',
+                  border: 'none',
                   padding: '2.5rem 1.5rem',
                   boxShadow: '0 12px 36px rgba(44,44,42,0.06)',
                   width: '100%',
