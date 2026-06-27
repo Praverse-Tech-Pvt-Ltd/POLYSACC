@@ -61,19 +61,20 @@ const STEROID_FAMILIES: SteroidFamily[] = [
   {
     number: '02',
     title: 'Synthetic Testosterone Derivatives',
-    subtitle: '3 APIs · GMP',
+    subtitle: '4 APIs · GMP',
     intro: 'Molecules that started as testosterone but were structurally altered in a lab to amplify anabolic (tissue-building) properties or to survive oral administration.',
     accent: 'sage',
     items: [
       { name: 'Methyltestosterone', body: "An oral version of testosterone altered at the 17th carbon position so the liver doesn't immediately destroy it." },
       { name: 'Methandienone', alias: 'Methandrostenolone · Dianabol', body: 'A highly potent, orally active synthetic derivative designed for massive glycogen retention, protein synthesis, and rapid weight gain.' },
       { name: 'Boldenone Undecylenate', alias: 'Equipoise', body: 'A structural derivative of testosterone designed to heavily increase red blood cell production and steady, lean muscle mass.' },
+      { name: 'Trenbolone Enanthate', body: 'A highly modified, long-acting injectable compound — roughly five times more anabolic and androgenic than basic testosterone.' },
     ],
   },
   {
     number: '03',
     title: 'Dihydrotestosterone (DHT) Derivatives',
-    subtitle: '5 APIs · GMP',
+    subtitle: '6 APIs · GMP',
     intro: 'Structural modifications of DHT, a naturally occurring, highly androgenic male hormone. Because DHT cannot convert into estrogen, these compounds are primarily used for building lean mass without water retention.',
     accent: 'amber',
     items: [
@@ -82,26 +83,7 @@ const STEROID_FAMILIES: SteroidFamily[] = [
       { name: 'Oxymetholone', alias: 'Anadrol', body: 'A heavily modified, potent oral DHT derivative used medically for severe anaemia, and off-label for extreme strength and bulk.' },
       { name: 'Methenolone Enanthate', alias: 'Primobolan', body: 'A mild, long-acting injectable steroid with high anabolic efficiency and a low side-effect profile.' },
       { name: 'Drostanolone Enanthate', alias: 'Masteron', body: 'A long-acting injectable compound heavily used to increase muscle density and definition.' },
-    ],
-  },
-  {
-    number: '04',
-    title: '19-Nortestosterone (19-Nor) Derivatives',
-    subtitle: '1 API · GMP',
-    intro: 'Altered molecules missing the carbon atom at the 19th position. They interact heavily with progesterone receptors and rank among the most powerful, tissue-binding compounds in existence.',
-    accent: 'amber',
-    items: [
-      { name: 'Trenbolone Enanthate', body: 'A highly modified, long-acting injectable compound — roughly five times more anabolic and androgenic than basic testosterone, causing massive muscle gains and aggressive fat oxidation.' },
-    ],
-  },
-  {
-    number: '05',
-    title: 'Non-Steroidal Compound',
-    subtitle: '1 API · GMP · Misclassified',
-    intro: 'Grouped commercially alongside anabolic steroids, but structurally and pharmacologically unrelated — included here for catalogue completeness, not chemical kinship.',
-    accent: 'amber',
-    items: [
-      { name: 'Clenbuterol HCl', body: 'A Beta-2 adrenergic agonist — a pharmaceutical sympathomimetic stimulant used to open airways in asthmatics and accelerate fat loss via thermogenesis. Possesses zero hormonal steroid structure.' },
+      { name: 'Clenbuterol HCl', body: 'A Beta-2 adrenergic agonist used for lean mass preservation and fat oxidation via thermogenesis.' },
     ],
   },
 ]
@@ -201,24 +183,18 @@ export default function AnabolicSteroidsSection() {
           Anabolic <span style={{ color: 'var(--sage)', fontStyle: 'italic' }}>Steroids</span>
         </h2>
         <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '0.88rem', fontWeight: 300, color: 'var(--muted)', lineHeight: 1.8, maxWidth: 620, marginBottom: '4rem' }}>
-          18 APIs across five distinct families — classified by parent hormone and ester chemistry.
+          18 APIs across three distinct families — classified by parent hormone and ester chemistry.
         </p>
 
-        {/* Matrix grid — 6 virtual columns, row 1: 3 cards spanning 2 each, row 2: 2 cards offset by 1 (pyramid) */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '1.5rem' }}>
-          {STEROID_FAMILIES.map((family, i) => {
+        {/* Matrix grid — 3 cards across */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
+          {STEROID_FAMILIES.map((family) => {
             const accentColor = family.accent === 'sage' ? 'var(--sage-deep)' : 'var(--amber)'
             const accentBorder = family.accent === 'sage' ? 'rgba(138,171,138,0.35)' : 'rgba(176,125,58,0.3)'
-            // Row 1: cols 1-2, 3-4, 5-6 | Row 2 (centered): cols 2-4, 4-6
-            const colSpans = [
-              '1 / 3', '3 / 5', '5 / 7',
-              '2 / 4', '4 / 6',
-            ]
             return (
               <div
                 key={family.title}
                 style={{
-                  gridColumn: colSpans[i],
                   border: `0.5px solid ${accentBorder}`,
                   borderTop: `2px solid ${accentColor}`,
                   background: 'var(--sage-pale)',
