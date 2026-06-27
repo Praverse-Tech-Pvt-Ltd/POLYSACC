@@ -357,11 +357,10 @@ export default function PolysaccharidePentosanSection() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: '1.2fr 1fr',
-              gap: '6rem',
-              alignItems: 'center',
+              gridTemplateColumns: '1fr',
+              gap: '0',
+              alignItems: 'start',
             }}
-            className="responsive-split"
           >
             <div>
               <p className="section-tag" style={{ marginBottom: '1.25rem' }}>
@@ -460,40 +459,7 @@ export default function PolysaccharidePentosanSection() {
               </div>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-              <div
-                style={{
-                  background: 'transparent',
-                  border: 'none',
-                  padding: '2.5rem 1.5rem',
-                  boxShadow: '0 12px 36px rgba(44,44,42,0.06)',
-                  width: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: '2px',
-                }}
-              >
-                <img
-                  src="/pps-structure.png"
-                  alt="Chemical structure of Pentosan Polysulfate Sodium"
-                  style={{ maxWidth: '100%', height: 'auto', display: 'block' }}
-                />
-              </div>
-              <p
-                style={{
-                  fontFamily: 'var(--font-jetbrains)',
-                  fontSize: '0.58rem',
-                  color: 'var(--muted)',
-                  marginTop: '1rem',
-                  textAlign: 'center',
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                }}
-              >
-                Structure: Sulphated β-1,4-xylan with 4-O-methyl-glucuronic acid branches
-              </p>
-            </div>
+            <div />
           </div>
         </div>
       </section>
