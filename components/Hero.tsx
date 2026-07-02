@@ -87,7 +87,7 @@ export default function Hero() {
               width: 'clamp(200px, 45vw, 340px)',
               aspectRatio: '17 / 6',
               objectFit: 'cover',
-              objectPosition: 'center',
+              objectPosition: 'center bottom',
               margin: '0 auto',
               display: 'block',
             }}
