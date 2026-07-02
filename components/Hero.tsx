@@ -5,6 +5,7 @@ import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import ShinyText from './reactbits/ShinyText'
+import AnimatedLogoVideo from './AnimatedLogoVideo'
 
 const Threads = dynamic(() => import('./Threads'), { ssr: false })
 
@@ -75,14 +76,8 @@ export default function Hero() {
           animate={inView ? 'visible' : 'hidden'}
           style={{ marginBottom: '2.5rem', mixBlendMode: 'multiply' }}
         >
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            poster="/logo.png"
-            aria-label="Polysacc"
+          <AnimatedLogoVideo
+            ariaLabel="Polysacc"
             style={{
               width: 'clamp(200px, 45vw, 340px)',
               aspectRatio: '17 / 6',
@@ -92,9 +87,7 @@ export default function Hero() {
               margin: '0 auto',
               display: 'block',
             }}
-          >
-            <source src="/polysacc-logo-neon-wave.mp4" type="video/mp4" />
-          </video>
+          />
         </motion.div>
 
         {/* Section tag */}

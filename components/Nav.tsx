@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import AnimatedLogoVideo from './AnimatedLogoVideo'
 
 type NavLink = {
   label: string
@@ -80,14 +81,7 @@ export default function Nav() {
             mixBlendMode: 'multiply',
           }}
         >
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            poster="/logo.png"
-            aria-hidden="true"
+          <AnimatedLogoVideo
             style={{
               width: 120,
               height: 52,
@@ -96,9 +90,7 @@ export default function Nav() {
               filter: 'brightness(1.075)',
               display: 'block',
             }}
-          >
-            <source src="/polysacc-logo-neon-wave.mp4" type="video/mp4" />
-          </video>
+          />
         </Link>
 
         {/* Desktop nav links */}
