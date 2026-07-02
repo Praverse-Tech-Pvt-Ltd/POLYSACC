@@ -74,7 +74,11 @@ export default function Nav() {
         <Link
           href="/"
           aria-label="Polysacc home"
-          style={{ textDecoration: 'none', lineHeight: 1 }}
+          style={{
+            textDecoration: 'none',
+            lineHeight: 1,
+            mixBlendMode: 'multiply',
+          }}
         >
           <video
             autoPlay
@@ -89,6 +93,7 @@ export default function Nav() {
               height: 52,
               objectFit: 'contain',
               objectPosition: 'center',
+              filter: 'brightness(1.075)',
               display: 'block',
             }}
           >

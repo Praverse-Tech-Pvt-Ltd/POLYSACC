@@ -66,14 +66,14 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      <div style={{ position: 'relative', zIndex: 1, maxWidth: 820, width: '100%' }}>
+      <div style={{ position: 'relative', maxWidth: 820, width: '100%' }}>
         {/* Logo */}
         <motion.div
           custom={0}
           variants={fadeUp}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
-          style={{ marginBottom: '2.5rem' }}
+          style={{ marginBottom: '2.5rem', mixBlendMode: 'multiply' }}
         >
           <video
             autoPlay
@@ -88,6 +88,7 @@ export default function Hero() {
               aspectRatio: '17 / 6',
               objectFit: 'cover',
               objectPosition: 'center bottom',
+              filter: 'brightness(1.075)',
               margin: '0 auto',
               display: 'block',
             }}
