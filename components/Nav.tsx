@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 type NavLink = {
@@ -72,15 +71,29 @@ export default function Nav() {
         }}
       >
         {/* Logo */}
-        <Link href="/" style={{ textDecoration: 'none', lineHeight: 1 }}>
-          <Image
-            src="/logo.png"
-            alt="Polysacc"
-            width={200}
-            height={68}
-            priority
-            style={{ height: 52, width: 'auto', display: 'block' }}
-          />
+        <Link
+          href="/"
+          aria-label="Polysacc home"
+          style={{ textDecoration: 'none', lineHeight: 1 }}
+        >
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster="/logo.png"
+            aria-hidden="true"
+            style={{
+              width: 120,
+              height: 52,
+              objectFit: 'contain',
+              objectPosition: 'center',
+              display: 'block',
+            }}
+          >
+            <source src="/polysacc-logo-neon-wave.mp4" type="video/mp4" />
+          </video>
         </Link>
 
         {/* Desktop nav links */}

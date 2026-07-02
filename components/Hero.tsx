@@ -3,7 +3,6 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
-import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import ShinyText from './reactbits/ShinyText'
 
@@ -76,19 +75,25 @@ export default function Hero() {
           animate={inView ? 'visible' : 'hidden'}
           style={{ marginBottom: '2.5rem' }}
         >
-          <Image
-            src="/logo.png"
-            alt="Polysacc"
-            width={340}
-            height={120}
-            priority
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster="/logo.png"
+            aria-label="Polysacc"
             style={{
               width: 'clamp(200px, 45vw, 340px)',
-              height: 'auto',
+              aspectRatio: '17 / 6',
+              objectFit: 'cover',
+              objectPosition: 'center',
               margin: '0 auto',
               display: 'block',
             }}
-          />
+          >
+            <source src="/polysacc-logo-neon-wave.mp4" type="video/mp4" />
+          </video>
         </motion.div>
 
         {/* Section tag */}
