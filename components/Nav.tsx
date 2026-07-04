@@ -13,12 +13,9 @@ type NavLink = {
 }
 
 const NAV_LINKS: NavLink[] = [
-  { label: 'About',              href: '/about',              small: false },
-  { label: 'Team',               href: '/team',               small: false },
-  { label: 'Science',            href: '/science',            small: false },
-  // { label: 'Portfolio',          href: '/product-portfolio',          small: false },
-  { label: 'Product Portfolio',  href: '/product-portfolio',  small: false },
-  { label: 'Contact',            href: '/contact',            small: false },
+  { label: 'About',               href: '/about',              small: false },
+  { label: 'Product Portfolio',   href: '/product-portfolio',  small: false },
+  { label: 'Contact',             href: '/contact',            small: false },
 ]
 
 function isActivePath(pathname: string, href: string) {

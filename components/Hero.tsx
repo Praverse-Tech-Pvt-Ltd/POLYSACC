@@ -79,7 +79,7 @@ export default function Hero() {
           <AnimatedLogoVideo
             ariaLabel="Polysacc"
             style={{
-              width: 'clamp(200px, 45vw, 340px)',
+              width: 'clamp(340px, 75vw, 620px)',
               aspectRatio: '17 / 6',
               objectFit: 'cover',
               objectPosition: 'center bottom',

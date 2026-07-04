@@ -7,6 +7,16 @@ const nextConfig = {
         destination: '/product-portfolio',
         permanent: true,
       },
+      {
+        source: '/team',
+        destination: '/about',
+        permanent: true,
+      },
+      {
+        source: '/science',
+        destination: '/about',
+        permanent: true,
+      },
     ]
   },
 }
