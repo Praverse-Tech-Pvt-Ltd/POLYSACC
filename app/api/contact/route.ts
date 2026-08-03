@@ -35,9 +35,22 @@ export async function POST(req: Request) {
 
     const resend = new Resend(process.env.RESEND_API_KEY ?? 'placeholder')
 
+    // info@polysacc.com is not a real mailbox — it's kept as the "To" so the
+    // email reads as if it went there, but it isn't a deliverable address.
+    // Actual delivery happens via CC, configured in CONTACT_CC_EMAIL.
+    const cc = process.env.CONTACT_CC_EMAIL
+      ?.split(',')
+      .map((addr) => addr.trim())
+      .filter(Boolean)
+
+    if (!cc || cc.length === 0) {
+      throw new Error('No CONTACT_CC_EMAIL configured — nowhere to deliver this enquiry.')
+    }
+
     await resend.emails.send({
       from: 'website@polysaccharidechemistry.com',
-      to: process.env.CONTACT_EMAIL ?? 'info@polysacc.com',
+      to: 'info@polysacc.com',
+      cc,
       subject: `New Enquiry — ${escaped.type || 'General'} — ${escaped.name}${escaped.company ? ` (${escaped.company})` : ''}`,
       html: `
         <table style="font-family: sans-serif; font-size: 14px; border-collapse: collapse; width: 100%; max-width: 600px;">
@@ -48,7 +61,7 @@ export async function POST(req: Request) {
           <tr><td style="padding: 10px 12px; border: 1px solid #eee; font-weight: 600;">Enquiry Type</td><td style="padding: 10px 12px; border: 1px solid #eee;">${escaped.type || '—'}</td></tr>
           <tr><td style="padding: 10px 12px; border: 1px solid #eee; font-weight: 600; vertical-align: top;">Message</td><td style="padding: 10px 12px; border: 1px solid #eee; white-space: pre-wrap;">${escaped.message}</td></tr>
         </table>
-        <p style="font-family: sans-serif; font-size: 12px; color: #999; margin-top: 20px;">Sent from polysaccharidechemistry.com contact form</p>
+        <p style="font-family: sans-serif; font-size: 12px; color: #999; margin-top: 20px;">Submitted via the info@polysacc.com contact form on polysaccharidechemistry.com</p>
       `,
     })
 
